@@ -1,0 +1,50 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"> Edit Data Profile </h4>
+        <div class="card">
+            <div class="card-header">
+                <form class="form form-vertical" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Nama Pengguna </label>
+                            <input class="form-control" type="text" name="name" value="{{data.name}}" />
+                        </div>
+                        <div class="mb-3 col-md-4">
+                            <label class="form-label">Telepon</label>
+                            <input class="form-control" type="number" name="phone" value="{{data.phone}}" />
+                        </div>
+                        <div class="mb-3 col-md-4">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control" name="email" value="{{data.email}}" />
+                        </div>
+                        <div class="mb-3 col-md-4">
+                            <label class="form-label">Alamat</label>
+                            <input type="text" class="form-control" name="alamat" value="{{data.alamat}}" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% if data.profile_pic %}
+                        <div class="mb-12 col-md-6">
+                            <img src="{{data.profile_pic.url}}" alt="" srcset="" height="200px" width="200px">
+                        </div>
+                        {% endif %}
+                        <label for="firstName" class="form-label">Profile Pic</label>
+                        <input class="form-control" type="file" name="profile_pic" value="{{data.profile_pic}}" />
+
+                    </div>
+                    <br>
+                    <div class="col-12 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary me-1 mb-1">Simpan</button>
+                        <button type="reset" class="btn btn-secondary me-1 mb-1">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends "frontend/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class=" navbar-inverse navbar-fixed-top">
+    
+    <div class="wide line">
+        <div class="row justify-content-center">
+            <div class="col-9">
+                <form class="form-inline ">
+                    <input class="form-control" style="width: 95%; margin-top: 10%;" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="form-control btn btn-primary" style="width: 5%; margin-top: 10%;" type="submit"><i
+                            class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around">
+        <div class="test bd-highlight">
+            <h3 class="display-6"><b>Analisis Implementasi Kebijakan pada Pengelolaan Hutan Kota (Kasus: Hutan Kota
+                    Munjul, Kecamatan Cipayung, Kota Jakarta Timur, Provinsi DKI Jakarta).</b></h3>
+            <br>
+            <div class="row">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>Cover</h6>
+                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+                            <br><br>
+                            <h6>Daftar isi</h6>
+                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+                            <br><br>
+                            <h6>Abstrak</h6>
+                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+                            <br><br>
+                            <h6>BAB I</h6>
+                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+                            <br><br>
+                            <h6>BAB II</h6>
+                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+                        </div>
+                        <div class="col-6">
+                            <h6>BAB III</h6>
+                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+                            <br><br>
+                            <h6>BAB IV</h6>
+                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+                            <br><br>
+                            <h6>BAB V</h6>
+                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+                            <br><br>
+                            <h6>Referensi</h6>
+                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+                            <br><br>
+                            <h6>Lampiran</h6>
+                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+                            <br><br>
+                        </div>
+                    </div>
+                    <h6>Date</h6>
+                    <h6>2022</h6>
+                    <br>
+                    <h6>Penulis</h6>
+                    <h6>Ansyari, Muhammad Isa
+                        Hero, Yulius</h6>
+                </div>
+                <div class="col-7" style="text-align: justify;">
+                    <p>
+
+                        Peningkatan Ruang Terbuka Hijau (RTH) seperti pembangunan hutan kota dapat menjadi prioritas
+                        bagi pemerintah untuk meningkatkan kualitas pembangunan dan dapat meningkatkan kestabilan
+                        ekosistem lingkungan perkotaan dari sisi ekologi. Penelitian ini bertujuan menganalisis
+                        implementasi kebijakan yang dikelola oleh Dinas Kehutanan Provinsi DKI Jakarta sesuai dengan
+                        Peraturan Menteri Kehutanan RI Nomor: P.71/Menhut-II/2009 terhadap pengelolaan Hutan Kota
+                        Munjul, Jakarta. Analisis implementasi kebijakan dilakukan dengan metode purposive sampling
+                        untuk mencari kelompok responden dan key informan. Informan dan responden dicari dengan
+                        menggunakan metode snowball sampling. Hasil penelitian menunjukkan evaluasi tingkat
+                        kesesuaian terhadap implementasi kebijakan pada pengelolaan Hutan Kota Munjul sebesar 3.97
+                        dan masuk ke dalam kategori baik, semua tingkat pengelolaan Hutan Kota Munjul sudah masuk
+                        kategori baik.
+                    </p>
+                    <h6>URL</h6>
+                    <a
+                        href="http://repository.ipb.ac.id/handle/123456789/99156">http://repository.ipb.ac.id/handle/123456789/99156</a>
+                </div>
+            </div>
+        </div>
+        <div class="test2 bd-highlight">
+            <ul class="list-group">
+                <li class="list-group-item active" aria-current="true">Filter Repository UNUY FTI</li>
+                <a type="button" class="list-group-item btn-light" href="">Penulis</a>
+                <a type="button" class="list-group-item btn-light" href="">Judul </a>
+                <a type="button" class="list-group-item btn-light" href="">Tanggal</a>
+                <a type="button" class="list-group-item btn-light" href="">Objek</a>
+            </ul>
+            
+            <ul class="list-group mt-3">
+                <li class="list-group-item active" aria-current="true">My Accounts</li>
+                <a type="button" class="list-group-item btn-light" href="">Login</a>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="col-2"></div> -->
+<style>
+    body,
+    html {
+        height: 100%;
+    }
+
+    h6 {
+        font-size: 14px;
+    }
+
+    .test {
+        flex: 0 0 50%;
+        margin-left: 160px;
+    }
+
+    .test2 {
+        flex: 0 0 250px;
+        margin-right: 150px;
+    }
+
+    section {
+        position: relative;
+        background-color: transparent !important;
+    }
+
+    .jumbotron {
+        width: auto;
+        height: auto;
+        background-color: #bababa;
+    }
+
+    .asu {
+        color: black;
+    }
+
+    .wide {
+        width: 100%;
+        height: 100%;
+        height: calc(100% - 1px);
+        background-color: #1163bc;
+        /* gantilogo */
+        background-size: cover;
+    }
+
+    .wide img {
+        width: 100%;
+    }
+
+
+    .line {
+        white-space: no-wrap;
+        overflow: hidden;
+        text-align: center;
+        color: #fff;
+        font-weight: 800;
+        font-size: 14pt;
+        padding: 25px;
+        text-align: center;
+    }
+</style>
+{% endblock %}

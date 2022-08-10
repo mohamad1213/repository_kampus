@@ -1,0 +1,55 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"> Profile</h4>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <!-- Account -->
+                    {% for u in data %}
+                    <div class="card-body">
+                        <div class="d-flex align-items-start align-items-sm-center gap-4">
+                            <img src="{{u.profile_pic.url}}" alt="user-avatar" class="d-block rounded"
+                                height="100" width="100" id="uploadedAvatar" />
+                                <a href="/administration/profile/{{u.pk}}/edit" class="btn btn-primary me-2">Update data</a>
+
+                                <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                        </div>
+                    </div>
+                    <hr class="my-0" />
+                    <div class="card-body">
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label  class="form-label">Nama lengkap</label>
+                                    <input class="form-control" type="text" readonly value="{{u.name}}"
+                                        autofocus />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="lastName" class="form-label">Email</label>
+                                    <input class="form-control" type="text" readonly value="{{u.email}}" />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Telepon</label>
+                                    <input class="form-control" type="text" readonly
+                                        value="{{u.phone}}" />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="organization" class="form-label">Alamat</label>
+                                    <input type="text" class="form-control" readonly
+                                        value="{{u.alamat}}" />
+                                </div>
+                            </div>
+                            {% endfor %}
+                    </div>
+                    <!-- /Account -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

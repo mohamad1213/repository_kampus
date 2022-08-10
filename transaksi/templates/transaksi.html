@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="main">
+    <label for="">{{data}}</label>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-black">Pelanggan</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select name="" id="" class="form-control">
+                                            <option value="">test</option>
+                                            <option value="">test2</option>
+                                            <option value="">test3</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn"
+                                            style="float: right; color: white; background-color: #205375;"><b>+</b>Tambah</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-black">Telepon</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <form class="form form-vertical" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {% load crispy_forms_tags %}
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="text-black">Tanggal Transaksi</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="tgl" value="{{form.tgl.value}}" readonly>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="text-black">Kode barang</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">test</option>
+                                                    <option value="">test2</option>
+                                                    <option value="">test3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="text-black">Nama Barang</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="" readonly>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="text-black">Harga</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control"value=" {{form.harga.value}}">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="text-black">Qty</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="number" class="form-control" name="">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="text-black">Sub-Total</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="" readonly>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="text-black">Bayar</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="text-black">Kembali</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="" readonly>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <hr>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                            <button type="reset"
+                                                class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="text-center text-black" for=""><b>Rosok</b>KU</h3>
+                                    <p class="text-center text-black mb-0" for=""> <small>Jl. Belukan, Kaliurang,
+                                            Sidorejo,
+                                            Godean,
+                                            Sleman DIY</small></p>
+                                    <p class="text-center text-black" for=""> <small>Telp. 085156803370</small></p>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-2" style="float: left;">
+                                            <label for="" class="text-black">No.Nota</label>
+                                        </div>
+                                        <div class="col-1" style="float: left;">
+                                            <label for="" class="text-black">:</label>
+                                        </div>
+                                        <div class="col-3" style="float: left;">
+                                            <label for="" class="text-black">28376283</label>
+                                        </div>
+                                        <div class="col-2" style="float: left;">
+                                            <label for="" class="text-black">Tanggal</label>
+                                        </div>
+                                        <div class="col-1" style="float: left;">
+                                            <label for="" class="text-black">:</label>
+                                        </div>
+                                        <div class="col-3">
+                                            <label for="" class="text-black">17 Juni 2022</label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-2" style="float: left;">
+                                            <label for="" class="text-black">Pelanggan</label>
+                                        </div>
+                                        <div class="col-1" style="float: left;">
+                                            <label for="" class="text-black">:</label>
+                                        </div>
+                                        <div class="col-3" style="float: left;">
+                                            <label for="" class="text-black">jhoni</label>
+                                        </div>
+                                        <div class="col-2" style="float: left;">
+                                            <label for="" class="text-black">Transaksi</label>
+                                        </div>
+                                        <div class="col-1" style="float: left;">
+                                            <label for="" class="text-black">:</label>
+                                        </div>
+                                        <div class="col-3">
+                                            <label for="" class="text-black">Pembelian</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Barang</th>
+                                                <th>Qty</th>
+                                                <th>Harga</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>BESI A</td>
+                                                <td>20</td>
+                                                <td>6000</td>
+                                                <td>120.0000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>BESI A</td>
+                                                <td>20</td>
+                                                <td>6000</td>
+                                                <td>120.0000</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-borderless">
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>Rp 120.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bayar</td>
+                                            <td>Rp. 120.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kembalian</td>
+                                            <td>Rp. 0</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn"
+                                style="float: right; color: white; background-color: #205375;">Cetak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold">Edit Skripsi</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Nama Penulis</label>
+                            <input class="form-control" type="text" name="nama_penulis" value="{{data.nama_penulis}}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Judul Skripsi</label>
+                            <input type="text" class="form-control" name="judul_laporan"
+                                value="{{data.judul_laporan}}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">NIM </label>
+                            <input class="form-control" type="text" name="nim_siswa" value="{{data.nim_siswa}}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Tahun</label>
+                            <input type="text" class="form-control" name="tahun_penyelesaian"
+                                value="{{data.tahun_penyelesaian}}" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label>Prodi</label>
+                            <select id="prodi" class="form-control" name="prodi">
+                                <option value="informatika">Informatika</option>
+                                <option value="Teknik Komputer">Teknik Komputer</option>
+                                <option value="Teknik Elektro">Teknik Elektro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label>Jenis Karya Tulis</label>
+                            <select id="jenis_laporan" class="form-control" name="jenis_laporan">
+                                <option value="journal">Journal</option>
+                                <option value="thesis">Thesis</option>
+                                <option value="project">Project</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-md-12">
+                            <label>Abstrak</label>
+                            <textarea name="abstrak" class="form-control" cols="30" rows="10">{{data.abstrak}}</textarea>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="col-12 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <button class="btn btn-light">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

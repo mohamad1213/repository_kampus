@@ -1,0 +1,69 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold">Data Skripsi</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-responsive col-md-10" id="" width="100%" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <td>Nama Penulis</td>
+                                <td>:</td>
+                                <td>{{data.nama_penulis}}</td>
+                              </tr>
+                              <tr>
+                                <td>NIM Mahasiswa</td>
+                                <td>:</td>
+                                <td>{{data.nim_siswa}}</td>
+                              </tr>
+                              <tr>
+                                <td>Judul Karya Tulis</td>
+                                <td>:</td>
+                                <td>{{data.judul_laporan}}</td>
+                              </tr>
+                              <tr>
+                                <td>Jenis Karya Tulis</td>
+                                <td>:</td>
+                                <td>{{data.jenis_laporan}}</td>
+                              </tr>
+                              <tr>
+                                <td>Tahun</td>
+                                <td>:</td>
+                                <td>{{data.tahun_penyelesaian}}</td>
+                              </tr>
+                              <tr>
+                                <td>Abstrak</td>
+                                <td>:</td>
+                                <td>{{data.abstrak}}</td>
+                              </tr>
+                              <tr>
+                                <td>File Karya Tulis</td>
+                                <td>:</td>
+                                <td>{{data.karya}}</td>
+                              </tr>
+                              <tr>
+                                <td>Tanggal Upload</td>
+                                <td>:</td>
+                                <td>{{data.created_at}}</td>
+                              </tr>
+                            </thead>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from admin1.models import *
+from django.template.loader import render_to_string, get_template
 from admin1.forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -108,20 +109,6 @@ def user(request):
         print("Error while getting quote")
     return render(request, 'home.html',{'data':data})
 
-# @login_required(login_url='/accounts/')
-def simpan(request,pk):
-    video = get_object_or_404(Upload, id=pk)
-    if request.method == 'POST':
-        video.favourite.add(request.user)
-
-    return redirect('/user_view/%s' % pk)
-
-
-    
-@login_required(login_url='/accounts/')
-def admin(request):
-    return render(request, 'admin/admin.html')
-
 @login_required(login_url='/accounts/')
 def user_view(request):
     data = Upload.objects.all()
@@ -173,20 +160,19 @@ def post_favorite(request, pk):
         post1.favourite.remove(request.user)
     else:
         post1.favourite.add(request.user)
-    return HttpResponseRedirect('/list_fav/')
-# def post_favorite(request, pk):
-#     post1 = get_object_or_404(UploadSkripsi,id=pk)
-#     post2= get_object_or_404(Upload,id=pk)
-#     if post1.favourite.filter(pk=request.user.id).exists() and post2.favourite.filter(pk=request.user.id).exists():
-#         post1.favourite.remove(request.user)
-#         post2.favourite.remove(request.user)
-#     else:
-#         post1.favourite.add(request.user)
-#         post2.favourite.add(request.user)
-#     return HttpResponseRedirect('/list_fav/')
+    return HttpResponseRedirect('/results/')
+
+def post_favorite_kartul(request, pk):
+    post1 = get_object_or_404(Upload,id=pk)
+    if post1.favourite.filter(pk=request.user.id).exists():
+        post1.favourite.remove(request.user)
+    else:
+        post1.favourite.add(request.user)
+    return HttpResponseRedirect('/results/')
+    
 def list_fav(request):
     user = request.user
-    fav_post = user.fav3.all()
+    fav_post = user.fav2.all()
     context = {
         'fav_post':fav_post
     }
@@ -196,3 +182,4 @@ def remove(request,pk):
      if request.user in product.favourite.all():
          product.favourite.remove(request.user)
      return HttpResponseRedirect('/')
+

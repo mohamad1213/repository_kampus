@@ -1,5 +1,5 @@
 from aiohttp import request
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponseNotAllowed, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from home.models import *
@@ -165,5 +165,4 @@ def accountSettings(req, pk):
 def profile(req):
     data = Profile.objects.all()
     return render(req, 'profile/index.html', {'data': data})
-
 

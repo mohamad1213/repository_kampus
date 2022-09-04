@@ -86,9 +86,9 @@
                       {% for u in request.user.groups.all %}
                       {% if u.name == 'user' %}
                         {% if is_favourite %}
-                        <a href="/results/{{d.pk}}/post_favorite/" class="btn"><i class='bx bx-bookmark'></i></a>
-                        {% else %}
                         <a href="/results/{{d.pk}}/post_favorite/" class="btn"><i class='bx bxs-bookmark'></i></a>
+                        {% else %}
+                        <a href="/results/{{d.pk}}/post_favorite/" class="btn"><i class='bx bx-bookmark'></i></a>
                         {% endif %}
                       {% endif %}
                       {% endfor %}

@@ -38,8 +38,9 @@ class Upload(models.Model):
     upload = models.FileField(default='', upload_to='karyatulis/', null=False, blank=True,validators=[validate_file_extension])
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    # favourite = models.ManyToManyField(UploadRepo, related_name="fav", blank=True)
-from django.db import models
+    favourite = models.ManyToManyField(User, related_name="fav", blank=True)
+
+
 
 class UploadSkripsi(models.Model):
     owner = models.ForeignKey(User, on_delete = models.DO_NOTHING,related_name='skripsi')
@@ -65,3 +66,26 @@ class UploadSkripsi(models.Model):
     dapus = models.FileField(default='', upload_to='skripsi/', null=False, blank=True,validators=[validate_file_extension])
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+    favourite = models.ManyToManyField(User, related_name="fav2", blank=True)
+
+class Contoh(models.Model):
+    owner = models.ForeignKey(User, on_delete = models.DO_NOTHING,related_name='skripsi2')
+    PRODI_CHOICE = (
+        ('Informatika', 'Informatika'),
+        ('Teknik Komputer', 'Teknik Komputer'),
+        ('Teknik Elektro', 'Teknik Elektro'),
+    )
+    prodi = models.CharField(max_length=50, choices=PRODI_CHOICE)
+    judul_laporan = models.CharField(max_length=100)
+    tahun_penyelesaian = models.IntegerField()
+    abstrak= models.TextField()
+    nama_penulis=models.CharField(max_length=50)
+    nim_siswa=models.IntegerField()
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+    favourite = models.ManyToManyField(User, related_name="fav3", blank=True)
+    slug = models.SlugField(max_length=120,blank=True)
+    likes = models.ManyToManyField(User, related_name='likes3', blank=True)
+
+
+

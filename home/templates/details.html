@@ -1,178 +1,191 @@
-{% extends "frontend/base.html" %}
+{% include "frontend/header.html" %}
+{% include "frontend/footer.html" %}
 {% load static %}
 
 {% block content %}
-<div class=" navbar-inverse navbar-fixed-top">
-    
-    <div class="wide line">
-        <div class="row justify-content-center">
-            <div class="col-9">
-                <form class="form-inline ">
-                    <input class="form-control" style="width: 95%; margin-top: 10%;" type="search" placeholder="Search"
-                        aria-label="Search">
-                    <button class="form-control btn btn-primary" style="width: 5%; margin-top: 10%;" type="submit"><i
-                            class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
-            </div>
-        </div>
+{% load static %}
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="/"><img src="{% static 'admin/template/images/logo.svg' %}"
+                class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="/administration"><img
+                src="{% static 'admin/template/images/logo-mini.svg' %}" alt="logo" /></a>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Library</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-    <div class="d-flex justify-content-around">
-        <div class="test bd-highlight">
-            <h3 class="display-6"><b>Analisis Implementasi Kebijakan pada Pengelolaan Hutan Kota (Kasus: Hutan Kota
-                    Munjul, Kecamatan Cipayung, Kota Jakarta Timur, Provinsi DKI Jakarta).</b></h3>
-            <br>
-            <div class="row">
-                <div class="col-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <h6>Cover</h6>
-                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
-                            <br><br>
-                            <h6>Daftar isi</h6>
-                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
-                            <br><br>
-                            <h6>Abstrak</h6>
-                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
-                            <br><br>
-                            <h6>BAB I</h6>
-                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
-                            <br><br>
-                            <h6>BAB II</h6>
-                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
+    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="icon-menu"></span>
+        </button>
+
+        <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item nav-search d-none d-lg-block">
+                <form class="" action="/results/" method="get">
+                    <div class="input-group">
+                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                            <span class="input-group-text" id="search">
+                                <i class="icon-search"></i>
+                            </span>
                         </div>
-                        <div class="col-6">
-                            <h6>BAB III</h6>
-                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
-                            <br><br>
-                            <h6>BAB IV</h6>
-                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
-                            <br><br>
-                            <h6>BAB V</h6>
-                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
-                            <br><br>
-                            <h6>Referensi</h6>
-                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
-                            <br><br>
-                            <h6>Lampiran</h6>
-                            <a href=""><i class="fa-solid fa-file-pdf"></i>Download</a>
-                            <br><br>
+                        <input type="text" name="q" class="form-control" id="navbar-search-input"
+                            placeholder="Search now" aria-label="search" aria-describedby="search">
+                    </div>
+                </form>
+            </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                    <img src="{% static 'admin/template/images/faces/face28.jpg' %}" alt="profile" />
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item" href="{% url 'administration:profile' %}">
+                        <i class="ti-settings text-primary"></i>
+                        Settings
+                    </a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">
+                        <i class="ti-power-off text-primary"></i>
+                        Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid page-body-wrapper" style="background-color: #dbe7c8;">
+    <div class="main-panel" style="width: 100%;">
+        <div class="content-wrapper">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    {% for b in skripsi %}
+                    <div class="d-flex align-items-center flex-column bd-highlight mb-3" style="height: 200px;">
+                        <br>
+                        <div class="mb-4 p-2 bd-highlight">
+                            <h3 class="text-center" style="color: #000000;">Where Can I get Some</h3>
+                            {% if is_favourite %}
+                            <a href="/results/{{b.pk}}/post_favorite/" class="btn"><i class='bx bx-bookmark'></i></a>
+                            {% else %}
+                            <a href="/results/{{b.pk}}/post_favorite/" class="btn"><i class='bx bxs-bookmark'></i></a>
+                            {% endif %}
+
+                        </div>
+                        <div class="mb-4 p-2 bd-highlight">
+                            <h6 class="text-center">{{b.nama_penulis}}, {{b.judul_laporan}}, {{b.prodi}},
+                                {{b.tahun_penyelesaian}}</h6>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <p style="font-size: 12;">{{b.abstrak}} </p>
                         </div>
                     </div>
-                    <h6>Date</h6>
-                    <h6>2022</h6>
-                    <br>
-                    <h6>Penulis</h6>
-                    <h6>Ansyari, Muhammad Isa
-                        Hero, Yulius</h6>
                 </div>
-                <div class="col-7" style="text-align: justify;">
-                    <p>
+            </div>
+            <br>
+            <br>
+            <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
+                            data-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                            aria-selected="true">COVER</button>
+                        <br>
+                        <button class="nav-link" id="v-pills-messages-tab" data-toggle="pill"
+                            data-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+                            aria-selected="false">DAFTAR
+                            ISI</button>
+                        <br>
+                        <button class="nav-link" id="v-pills-bab1-tab" data-toggle="pill" data-target="#v-pills-bab1"
+                            type="button" role="tab" aria-controls="v-pills-bab1" aria-selected="false">BAB I</button>
+                        <br>
+                        <button class="nav-link" id="v-pills-bab2-tab" data-toggle="pill" data-target="#v-pills-bab2"
+                            type="button" role="tab" aria-controls="v-pills-bab2" aria-selected="false">BAB II</button>
+                        <br>
+                        <button class="nav-link" id="v-pills-bab3-tab" data-toggle="pill" data-target="#v-pills-bab3"
+                            type="button" role="tab" aria-controls="v-pills-bab3" aria-selected="false">BAB III</button>
+                        <br>
+                        <button class="nav-link" id="v-pills-bab4-tab" data-toggle="pill" data-target="#v-pills-bab4"
+                            type="button" role="tab" aria-controls="v-pills-bab4" aria-selected="false">BAB IV</button>
+                        <br>
+                        <button class="nav-link" id="v-pills-bab5-tab" data-toggle="pill" data-target="#v-pills-bab5"
+                            type="button" role="tab" aria-controls="v-pills-bab5" aria-selected="false">BAB V</button>
+                        <br>
+                        <button class="nav-link" id="v-pills-dapus-tab" data-toggle="pill" data-target="#v-pills-dapus"
+                            type="button" role="tab" aria-controls="v-pills-dapus" aria-selected="false">DAFTAR
+                            PUSTAKA</button>
+                        <br>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="/{{cover}}"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                            aria-labelledby="v-pills-profile-tab">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="/{{daftarisi}}"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                            aria-labelledby="v-pills-messages-tab">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <!-- <img src="/{{cover}}" alt="" srcset=""> -->
+                                <!-- <embed src="/{{ cover }}" type="application/pdf" height="700px" width="500px"> -->
+                                <!-- <iframe
+                                    src="https://docs.google.com/gview?url=https://path.com/to/your/pdf.pdf&embedded=true"
+                                    style="width:600px; height:500px;" frameborder="0"></iframe> -->
 
-                        Peningkatan Ruang Terbuka Hijau (RTH) seperti pembangunan hutan kota dapat menjadi prioritas
-                        bagi pemerintah untuk meningkatkan kualitas pembangunan dan dapat meningkatkan kestabilan
-                        ekosistem lingkungan perkotaan dari sisi ekologi. Penelitian ini bertujuan menganalisis
-                        implementasi kebijakan yang dikelola oleh Dinas Kehutanan Provinsi DKI Jakarta sesuai dengan
-                        Peraturan Menteri Kehutanan RI Nomor: P.71/Menhut-II/2009 terhadap pengelolaan Hutan Kota
-                        Munjul, Jakarta. Analisis implementasi kebijakan dilakukan dengan metode purposive sampling
-                        untuk mencari kelompok responden dan key informan. Informan dan responden dicari dengan
-                        menggunakan metode snowball sampling. Hasil penelitian menunjukkan evaluasi tingkat
-                        kesesuaian terhadap implementasi kebijakan pada pengelolaan Hutan Kota Munjul sebesar 3.97
-                        dan masuk ke dalam kategori baik, semua tingkat pengelolaan Hutan Kota Munjul sudah masuk
-                        kategori baik.
-                    </p>
-                    <h6>URL</h6>
-                    <a
-                        href="http://repository.ipb.ac.id/handle/123456789/99156">http://repository.ipb.ac.id/handle/123456789/99156</a>
+                                <!-- <object data="/media/test.pdf" type="application/pdf" width="100%" height="100%">
+                                    <p>Alternative text - include a link <a href="/media/test.pdf">to the PDF!</a></p>
+                                  </object> -->
+                                <iframe class="embed-responsive-item" src="/{{bab1}}"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-bab1" role="tabpanel" aria-labelledby="v-pills-bab1-tab">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="/{{bab2}}"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-bab2" role="tabpanel" aria-labelledby="v-pills-bab2-tab">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="/{{bab3}}"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-bab3" role="tabpanel" aria-labelledby="v-pills-bab3-tab">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="/{{bab4}}"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-bab4" role="tabpanel" aria-labelledby="v-pills-bab4-tab">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="/{{bab5}}"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-bab5" role="tabpanel" aria-labelledby="v-pills-bab5-tab">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="/{{dapus}}"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="test2 bd-highlight">
-            <ul class="list-group">
-                <li class="list-group-item active" aria-current="true">Filter Repository UNUY FTI</li>
-                <a type="button" class="list-group-item btn-light" href="">Penulis</a>
-                <a type="button" class="list-group-item btn-light" href="">Judul </a>
-                <a type="button" class="list-group-item btn-light" href="">Tanggal</a>
-                <a type="button" class="list-group-item btn-light" href="">Objek</a>
-            </ul>
-            
-            <ul class="list-group mt-3">
-                <li class="list-group-item active" aria-current="true">My Accounts</li>
-                <a type="button" class="list-group-item btn-light" href="">Login</a>
-            </ul>
-        </div>
     </div>
+</div>
+{% endfor %}
+
+</div>
 </div>
 
 
 <!-- <div class="col-2"></div> -->
-<style>
-    body,
-    html {
-        height: 100%;
-    }
-
-    h6 {
-        font-size: 14px;
-    }
-
-    .test {
-        flex: 0 0 50%;
-        margin-left: 160px;
-    }
-
-    .test2 {
-        flex: 0 0 250px;
-        margin-right: 150px;
-    }
-
-    section {
-        position: relative;
-        background-color: transparent !important;
-    }
-
-    .jumbotron {
-        width: auto;
-        height: auto;
-        background-color: #bababa;
-    }
-
-    .asu {
-        color: black;
-    }
-
-    .wide {
-        width: 100%;
-        height: 100%;
-        height: calc(100% - 1px);
-        background-color: #1163bc;
-        /* gantilogo */
-        background-size: cover;
-    }
-
-    .wide img {
-        width: 100%;
-    }
-
-
-    .line {
-        white-space: no-wrap;
-        overflow: hidden;
-        text-align: center;
-        color: #fff;
-        font-weight: 800;
-        font-size: 14pt;
-        padding: 25px;
-        text-align: center;
-    }
-</style>
 {% endblock %}

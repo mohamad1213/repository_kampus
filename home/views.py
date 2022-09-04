@@ -8,67 +8,33 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
+from itertools import chain
+import requests
 def index(request):
-    home = Home.objects.all()
-    berita =Berita.objects.all()
-    tentang = TentangKami.objects.all()
-    galeri = Galeri.objects.all()
-    prestasi = Prestasi.objects.all()
-    ppdb = Pendaftaran.objects.all()
-    visi = Visimisi.objects.all()
-    ukm = Ekstrakulikuler.objects.all()
-    context = {
-        'home':home,
-        'berita':berita,
-        'tentang':tentang,
-        'visi':visi,
-        'galeri':galeri,
-        'prestasi':prestasi,
-        'ppdb':ppdb,
-        'ukm':ukm,
-    }
-    return render(request,"home.html", context)
-def page(request):
-    home = Home.objects.all()
-    berita =Berita.objects.all()
-    tentang = TentangKami.objects.all()
-    galeri = Galeri.objects.all()
-    prestasi = Prestasi.objects.all()
-    ppdb = Pendaftaran.objects.all()
-    visi = Visimisi.objects.all()
-    ukm = Ekstrakulikuler.objects.all()
-    context = {
-        'home':home,
-        'berita':berita,
-        'tentang':tentang,
-        'visi':visi,
-        'galeri':galeri,
-        'prestasi':prestasi,
-        'ppdb':ppdb,
-        'ukm':ukm,
-    }
-    return render(request,"page_result.html", context)
-def detail(request):
-    home = Home.objects.all()
-    berita =Berita.objects.all()
-    tentang = TentangKami.objects.all()
-    galeri = Galeri.objects.all()
-    prestasi = Prestasi.objects.all()
-    ppdb = Pendaftaran.objects.all()
-    visi = Visimisi.objects.all()
-    ukm = Ekstrakulikuler.objects.all()
-    context = {
-        'home':home,
-        'berita':berita,
-        'tentang':tentang,
-        'visi':visi,
-        'galeri':galeri,
-        'prestasi':prestasi,
-        'ppdb':ppdb,
-        'ukm':ukm,
-    }
-    return render(request,"details.html", context)
+    response = requests.get("https://zenquotes.io/api/quotes/")
+    if response.status_code == 200:
+        ## extracting the core data
+        json_data = response.json()
+        data = json_data[1]['q']
+    else:
+        print("Error while getting quote")
+    return render(request, 'home.html',{'data':data})
 
+def detail(request, pk):
+    post = UploadSkripsi.objects.filter(id=pk)
+    post1 = Upload.objects.filter(id=pk)
+    if post:
+        fav = False
+        for u in post:
+            if u.favourite.filter(id=request.user.id).exists():
+                fav = True
+        return render(request, 'details.html', {'skripsi':post, 'is_favourite':fav})
+    elif post1:
+        fav = False
+        for u in post1:
+            if u.favourite.filter(id=request.user.id).exists():
+                fav = True
+        return render(request, 'details_katul.html', {'skripsi':post1, 'is_favourite':fav})
 
 # @login_required(login_url='/accounts/')
 def home(request):
@@ -106,7 +72,7 @@ def home(request):
                     pass  
         else:  
             form = UploadForm()
-        return render(request, 'user/home.html', {
+        return render(request, 'home.html', {
             'data':data,
             'form':form
         })
@@ -132,7 +98,7 @@ def home(request):
 @login_required(login_url='/accounts/')
 def user(request):
     data = Upload.objects.all()
-    response = requests.get("https://zenquotes.io/api/quotes/")
+    response = request.get("https://zenquotes.io/api/quotes/")
     if response.status_code == 200:
         ## extracting the core data
         json_data = response.json()
@@ -140,13 +106,7 @@ def user(request):
         print(json_data[1]['q'])
     else:
         print("Error while getting quote")
-    # search = 'Jasper Fforde'
-    # hasil =[]
-    # result = quote(search, limit=2)
-    # for u in result:
-    #     hasil.append(u['qoute'])
-    # print(hasil)
-    return render(request, 'user/user.html',{'data':data})
+    return render(request, 'home.html',{'data':data})
 
 # @login_required(login_url='/accounts/')
 def simpan(request,pk):
@@ -156,39 +116,8 @@ def simpan(request,pk):
 
     return redirect('/user_view/%s' % pk)
 
-def remove(request,pk):
-     product = get_object_or_404(Upload,pk=pk)
-     if request.user in product.favourite.all():
-         product.favourite.remove(request.user)
-     return HttpResponseRedirect('/')
 
     
-# @login_required(login_url='/accounts/')
-# def simpan(request, id):
-#     upload = Upload.objects.get(pk=id)
-#     data = {
-#             "id": upload.id,
-#             "prodi": upload.prodi,
-#             "jenis_laporan": upload.jenis_laporan,
-#             "judul_laporan": upload.judul_laporan,
-#             "tahun_penyelesaian": upload.tahun_penyelesaian,
-#             "abstrak": upload.abstrak,
-#             "nama_penulis": upload.nama_penulis,
-#             "upload": upload.upload,
-#     }
-#     if request.method == "POST":
-#         upload_forms = UploadForm(request.POST, instance=data)
-#         if upload_forms.is_valid():
-#             print('save')
-#             upload_forms.save()
-#             print('save')
-#             return redirect('user')
-#         else:
-#             return HttpResponse("salah cok")
-        
-#     return render(request, 'user.html', {'data': data, 'form':upload_forms})
-    
-
 @login_required(login_url='/accounts/')
 def admin(request):
     return render(request, 'admin/admin.html')
@@ -206,8 +135,6 @@ def detail_view(request, id):
     for u in data:
         upload = f'media/{u.upload}'
         print(upload)
-
-
     return render(request, 'user_view/detail_view.html', {
         'data': data,
         'upload':upload
@@ -223,14 +150,49 @@ def user_detail(request, id):
 
     })
 
-
 def artists_view(request):
     if 'q' in request.GET:
         query = request.GET['q']
         multiple_q = Q(judul_laporan__icontains=query) | Q(jenis_laporan__icontains=query) | Q(abstrak__icontains=query) | Q(nama_penulis__icontains=query) | Q(prodi__icontains=query) | Q(tahun_penyelesaian__icontains=query) | Q(nim_siswa__icontains=query)
-        results = Upload.objects.filter(multiple_q)
-        results = UploadSkripsi.objects.filter(multiple_q)
+        multiple_q2 = Q(judul_laporan__icontains=query) | Q(abstrak__icontains=query) | Q(nama_penulis__icontains=query) | Q(prodi__icontains=query) | Q(tahun_penyelesaian__icontains=query) | Q(nim_siswa__icontains=query)
+        results1 = Upload.objects.filter(multiple_q)
+        results2 = UploadSkripsi.objects.filter(multiple_q2)
+        results = chain(results1, results2)
     else:
-        results = Upload.objects.all()
-        results = UploadSkripsi.objects.all()
-    return render(request, 'page_result.html', {'results': results})
+        results3 = UploadSkripsi.objects.all()
+        results4 = Upload.objects.all()
+        results = chain(results3, results4)
+    context ={
+        'results': results
+    }
+    return render(request, 'page_result.html', context)
+
+def post_favorite(request, pk):
+    post1 = get_object_or_404(UploadSkripsi,id=pk)
+    if post1.favourite.filter(pk=request.user.id).exists():
+        post1.favourite.remove(request.user)
+    else:
+        post1.favourite.add(request.user)
+    return HttpResponseRedirect('/list_fav/')
+# def post_favorite(request, pk):
+#     post1 = get_object_or_404(UploadSkripsi,id=pk)
+#     post2= get_object_or_404(Upload,id=pk)
+#     if post1.favourite.filter(pk=request.user.id).exists() and post2.favourite.filter(pk=request.user.id).exists():
+#         post1.favourite.remove(request.user)
+#         post2.favourite.remove(request.user)
+#     else:
+#         post1.favourite.add(request.user)
+#         post2.favourite.add(request.user)
+#     return HttpResponseRedirect('/list_fav/')
+def list_fav(request):
+    user = request.user
+    fav_post = user.fav3.all()
+    context = {
+        'fav_post':fav_post
+    }
+    return render(request, 'bookmark.html', context)
+def remove(request,pk):
+     product = get_object_or_404(Contoh,pk=pk)
+     if request.user in product.favourite.all():
+         product.favourite.remove(request.user)
+     return HttpResponseRedirect('/')

@@ -2,101 +2,35 @@
 {% load static %}
 
 {% block content %}
-<div class=" navbar-inverse navbar-fixed-top">
-
-  <div class="wide line">
-    <div class="row justify-content-center">
-      <div class="col-9">
-        <form class="form-inline" method="get">
-          <input class="form-control" name="q" style="width: 95%; margin-top: 10%;" type="search" placeholder="Search"
-            aria-label="Search">
-          <button class="form-control btn btn-primary" style="width: 5%; margin-top: 10%;" type="submit"><i
-              class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Library</li>
-        </ol>
-      </nav>
-    </div>
-  </div>
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-9">
-        <div class="row">
-          <div class="col-9">
-            <div class="jumbotron">
-              <h2 class="display-6" style="color: #002B5B;"><b>Welcome to UNUY University FTI Repository</b></h2>
-              <p class="lead">Repository FTI adalah sebuah situs pencarian karya tulis baik skripsi, journal,
-                thesis dan lain lain</p>
-              <br>
-              <h6>Pengumuman:</h6>
-              <p>
-                Mulai September 2020 file full text Repository Karya Ilmiah dikenakan akses terbatas untuk diunduh.
-                Untuk dapat mengunduh file full text, silakan login menggunakan ID-IPB melalui menu Login di sebelah
-                kanan.
-                Panduan untuk mengunduh full teks di Repository Karya Ilmiah dapat dilihat di
-                ipb.link/panduan-unduh-repository</p>
+<div class="main-panel" style="width: 100%;">
+    <div class="content-wrapper" style="background-color: #dbe7c8;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8" style="margin-top: 10%;">
+                <h3 class="text-center" style="font-family: poppins; color: #7D9D9C; ">Repositori Fakultas Teknologi
+                    Informasi</h3>
+                <br>
+                <form class="card card-sm" action="/results/" method="get">
+                    <div class="card-body row no-gutters align-items-center nav-search">
+                        <div class="input-group">
+                            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                                <span class="input-group-text" id="search" style="background-color: #7D9D9C;">
+                                    <i class="icon-search" style="color: #fff;"></i>
+                                </span>
+                            </div>
+                            <input type="text" name="q" class="form-control" id="navbar-search-input"
+                                placeholder="Search now" aria-label="search" aria-describedby="search">
+                        </div>
+                    </div>
+                </form>
+                <br><br>
+                <h4 class="text-center" style="font-family: poppins; font-size: 15px; color: #7D9D9C; ">
+                    {% for u in data %}
+                    {{u}}
+                    {% endfor %}
+                
+                </h4>
             </div>
-          </div>
-          <div class="col-3">
-            <ul class="list-group">
-              <li class="list-group-item active" aria-current="true">Filter Repository UNUY FTI</li>
-              <a type="button" class="list-group-item btn-light" href="">Penulis</a>
-              <a type="button" class="list-group-item btn-light" href="">Judul </a>
-              <a type="button" class="list-group-item btn-light" href="">Tanggal</a>
-              <a type="button" class="list-group-item btn-light" href="">Objek</a>
-            </ul>
-
-            <ul class="list-group mt-3">
-              <li class="list-group-item active" aria-current="true">My Accounts</li>
-              <a type="button" class="list-group-item btn-light" href="{% url 'login' %}">Login</a>
-            </ul>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!-- <div class="col-2"></div> -->
-  <style>
-    body,
-    html {
-      height: 100%;
-    }
-
-    .asu {
-      color: black;
-    }
-
-    .wide {
-      width: 100%;
-      height: 100%;
-      height: calc(100% - 1px);
-      background-color: #1163bc;
-      /* gantilogo */
-      background-size: cover;
-    }
-
-    .wide img {
-      width: 100%;
-    }
-
-
-    .line {
-      white-space: no-wrap;
-      overflow: hidden;
-      text-align: center;
-      color: #fff;
-      font-weight: 800;
-      font-size: 14pt;
-      padding: 25px;
-      text-align: center;
-    }
-  </style>
-  {% endblock %}
+</div>
+{% endblock %}

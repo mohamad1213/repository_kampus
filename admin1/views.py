@@ -10,12 +10,10 @@ import os
 
 @login_required(login_url='/accounts/')
 def index(request):
-    data = Profile.objects.all()
-    context ={'data':data}
+    skripsi = UploadSkripsi.objects.filter(owner=request.user)
+    karlis = Upload.objects.filter(owner=request.user)
+    context ={'data':len(skripsi),'karlis':len(karlis)}
     return render(request,"index.html", context)
-@login_required(login_url='/accounts/')
-def box(request):
-    return render(request,"boxicon.html")
 #karya_tulis 
 @login_required(login_url='/accounts/')
 def karya_tulis(request):
@@ -167,3 +165,5 @@ def accountSettings(req, pk):
 def profile(req):
     data = Profile.objects.all()
     return render(req, 'profile/index.html', {'data': data})
+
+

@@ -1,0 +1,106 @@
+{% include "frontend/header.html" %}
+{% include "frontend/footer.html" %}
+{% load static %}
+
+{% block content %}
+{% load static %}
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="/"><img src="{% static 'admin/template/images/logo.svg' %}"
+                class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="/administration"><img
+                src="{% static 'admin/template/images/logo-mini.svg' %}" alt="logo" /></a>
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="icon-menu"></span>
+        </button>
+
+        <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item nav-search d-none d-lg-block">
+                <form class="" action="/results/" method="get">
+                    <div class="input-group">
+                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                            <span class="input-group-text" id="search">
+                                <i class="icon-search"></i>
+                            </span>
+                        </div>
+                        <input type="text" name="q" class="form-control" id="navbar-search-input"
+                            placeholder="Search now" aria-label="search" aria-describedby="search">
+                    </div>
+                </form>
+            </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                    <img src="{% static 'admin/template/images/faces/face28.jpg' %}" alt="profile" />
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item" href="{% url 'administration:profile' %}">
+                        <i class="ti-settings text-primary"></i>
+                        Settings
+                    </a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">
+                        <i class="ti-power-off text-primary"></i>
+                        Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- partial -->
+<div class="container-fluid page-body-wrapper" style="background-color: #dbe7c8;">
+    <div class="main-panel" style="width: 100%;">
+        <div class="content-wrapper">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    {% for b in kartul %}
+                    <div class="d-flex align-items-center flex-column bd-highlight mb-3" style="height: 200px;">
+                        <br>
+                        <div class="mb-4 p-2 bd-highlight">
+                            <h3 class="text-center" style="color: #000000;">Where Can I get Some</h3>
+                            {% if is_favourite %}
+                            <a href="/results/{{b.pk}}/post_favorite/" class="btn"><i class='bx bx-bookmark'></i></a>
+                            {% else %}
+                            <a href="/results/{{b.pk}}/post_favorite/" class="btn"><i class='bx bxs-bookmark'></i></a>
+                            {% endif %}
+                        </div>
+                        <div class="mb-4 p-2 bd-highlight">
+                            <h6 class="text-center">{{b.nama_penulis}}, {{b.judul_laporan}}, {{b.prodi}},
+                                {{b.tahun_penyelesaian}}
+                            </h6>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <p style="font-size: 12;">{{b.abstrak}} </p>
+                        </div>
+                        <button class="nav-link btn btn-primary" style="float: left;" id="v-pills-messages-tab"
+                            data-toggle="pill" data-target="#v-pills-messages" type="button" role="tab"
+                            aria-controls="v-pills-messages" aria-selected="false">Download File</button>
+
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                            aria-labelledby="v-pills-messages-tab">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="/{{b.upload.url}}" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+<!-- <div class="col-2"></div> -->
+{% endblock %}

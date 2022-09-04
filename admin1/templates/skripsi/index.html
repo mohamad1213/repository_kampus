@@ -24,11 +24,11 @@
                             <thead>
                                 <tr>
                                     <th>Nama Penulis</th>
-                                    <th>Nim Mahasiswa</th>
+                                    <th>NIM Mahasiswa</th>
                                     <th>Prodi</th>
-                                    <th>Judul Laporan</th>
-                                    <th>Tahun Laporan</th>
+                                    <th>Judul Skripsi</th>
                                     <th>Tanggal </th>
+                                    <th>Tahun</th>
                                 </tr>
                             </thead>
                             {% for u in data %}
@@ -41,8 +41,10 @@
                                     <td>{{u.tahun_penyelesaian}}</td>
                                     <td>{{u.created_at}}</td>
                                     <td>
-                                         <a  type="button" class="btn btn-warning" href="/administration/skripsi/{{u.pk}}/detail/">Details</a>
-                                         <a  type="button" class="btn btn-warning" href="/administration/skripsi/{{u.pk}}/update/">Update</a>
+                                        <a type="button" class="btn btn-primary"
+                                            href="/administration/skripsi/{{u.pk}}/detail/">Details</a>
+                                        <a type="button" class="btn btn-warning"
+                                            href="/administration/skripsi/{{u.pk}}/update/">Update</a>
                                         <a type="button" class="btn btn-danger"
                                             href="/administration/skripsi/{{u.pk}}/delete/">Delete</a>
                                     </td>
@@ -51,6 +53,8 @@
                             {% endfor %}
 
                         </table>
+
+
 
                         <!-- Modal Input -->
                         <div class="modal fade" id="input" tabindex="-1" role="dialog"
@@ -71,7 +75,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </form>
                                     </div>

@@ -25,7 +25,7 @@ SECRET_KEY = '9pl1&*x2y2jif3!xk2ad2na2q4q)&v)bf%5_cuyk864t5h0k-g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,7 +87,8 @@ DATABASES = {
     }
 }
 
-
+# from django.core.servers.basehttp import WSGIServer
+# WSGIServer.handle_error = lambda *args, **kwargs: None
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 

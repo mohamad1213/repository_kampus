@@ -21,8 +21,8 @@ def home(request):
         response = requests.get("https://zenquotes.io/api/quotes/")
         if response.status_code == 200:
             ## extracting the core data
-            json_data = response.json()
-            data = json_data[1]['q']
+            json_data = response.text()
+            data = json_data.get('q')
         else:
             print("Error while getting quote")
         return render(request, 'home.html', {

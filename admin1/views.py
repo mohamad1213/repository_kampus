@@ -1,4 +1,3 @@
-from aiohttp import request
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponseNotAllowed, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *

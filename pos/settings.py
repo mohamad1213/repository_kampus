@@ -27,9 +27,7 @@ DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 
-ALLOWED_HOSTS = ['repositoryfti.herokuapp.com','*']
-CSRF_TRUSTED_ORIGINS = ["https://repositoryfti.herokuapp.com/"]
-CORS_ORIGIN_WHITELIST = ("https://repositoryfti.herokuapp.com/")
+ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
 
 
 # Application definition
@@ -43,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap_datepicker_plus',
     'crispy_forms',
-    'corsheaders',
     'home',
     'admin1',
     'account'
@@ -57,9 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
-CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'pos.urls'
 

@@ -49,7 +49,7 @@ def update_karya_tulis(req, pk):
         instance.nim = req.POST.get('nim')
         instance.nama_penulis = req.POST.get('nama_penulis')
         instance.save()
-        messages.success(req, "data Telah ditambahkan")
+        messages.success(req, "Data Telah diupdate")
         return redirect('/administration/karya_tulis/')
     context = {"data":instance}
     return render(req, 'karya_tulis/update.html', context) 

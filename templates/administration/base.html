@@ -3,11 +3,11 @@
 {% include "administration/sidebar.html" %}
 {% if user.is_authenticated %}
 <div class="main-panel">
-
-    {% block content %}
-    {% endblock %}
+  {% include 'administration/messages.html' %}
+  {% block content %}
+  {% endblock %}
   {% else %}
-    <p>Please Log in</p>
+  <p>Please Log in</p>
   {% endif %}
 
-    {% include "administration/footer.html" %}
+  {% include "administration/footer.html" %}

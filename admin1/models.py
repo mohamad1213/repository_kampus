@@ -1,8 +1,7 @@
 from django.db import models
 from .validator import validate_file_extension
-
 from django.contrib.auth.models import User
-
+import uuid
 class Profile(models.Model):
 	user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200, null=True)
@@ -17,6 +16,7 @@ class Profile(models.Model):
 
 
 class Upload(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     owner = models.ForeignKey(User, on_delete = models.DO_NOTHING,related_name='karyatulis')
     PRODI_CHOICE = (
         ('Informatika', 'Informatika'),
@@ -43,6 +43,7 @@ class Upload(models.Model):
 
 
 class UploadSkripsi(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     owner = models.ForeignKey(User, on_delete = models.DO_NOTHING,related_name='skripsi')
     PRODI_CHOICE = (
         ('Informatika', 'Informatika'),
@@ -68,3 +69,8 @@ class UploadSkripsi(models.Model):
     updated_at = models.DateField(auto_now=True)
     favourite = models.ManyToManyField(User, related_name="fav2", blank=True)
 
+
+class Bookmark(models.Model):
+    user = models.ForeignKey(User, on_delete = models.DO_NOTHING,related_name='bookmark')
+    journal = models.ForeignKey(Upload, on_delete=models.CASCADE, related_name='fav3')
+    skripsi = models.ForeignKey(UploadSkripsi, on_delete=models.CASCADE, related_name='fav4')

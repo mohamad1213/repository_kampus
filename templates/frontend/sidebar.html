@@ -33,7 +33,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           {% if request.user.is_authenticated %}
-          <a class="dropdown-item" href="{% url 'list_fav' %}">
+          <a class="dropdown-item" href="{% url 'home:list_fav' %}">
             <i class="ti-settings text-primary"></i>
             Bookmark
           </a>
@@ -54,3 +54,4 @@
 </nav>
 <div class="container-fluid page-body-wrapper">
   <div class="main-panel" style="width: 100%;">
+    {% include 'frontend/messages.html' %}

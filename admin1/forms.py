@@ -13,11 +13,11 @@ class LoginForm(UserCreationForm):
 class UploadForm(ModelForm):
     class Meta:
          model = Upload
-         exclude = ['owner']
+         exclude = ['owner','favourite']
 class UploadSkripsiForm(ModelForm):
     class Meta:
          model = UploadSkripsi
-         exclude = ['owner']
+         exclude = ['owner','favourite']
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile

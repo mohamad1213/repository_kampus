@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import CreateUserForm
+from django.contrib.auth.models import Group
 from .models import *
 
 def registerPage(request):
@@ -12,7 +13,10 @@ def registerPage(request):
 		if request.method == 'POST':
 			form = CreateUserForm(request.POST)
 			if form.is_valid():
-				form.save()
+				user = form.save()
+				group = Group.objects.get(name='user') 
+				user.groups.add(group)
+
 				return redirect('/accounts/')
 			else:
 				print(form.errors)

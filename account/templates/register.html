@@ -3,84 +3,83 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - ROSOK.ID</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'admin/assets/vendors/simple-datatables/style.css' %}">
-
-    <link rel="stylesheet" href="{% static 'admin/assets/vendors/iconly/bold.css' %}">
-
-    <link rel="stylesheet" href="{% static 'admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.css' %}">
-    <link rel="stylesheet" href="{% static 'admin/assets/vendors/bootstrap-icons/bootstrap-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'admin/assets/css/app.css' %}">
-    <link rel="stylesheet" href="{% static 'admin/assets/css/pages/auth.css' %}">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Repositori FTI UNU Yogyakarta</title>
+  <link rel="shortcut icon" href="{% static 'admin/inf.png' %}" />
+  <link rel="stylesheet" href="{% static 'admin/template/vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'admin/template/vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'admin/template/vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'admin/template/css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
 </head>
 
 <body>
-    <div id="auth">
-        <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div id="auth-left" style="text-align: center;">
-                        <a href="/"><img src="{% static 'admin/assets/images/logo/logo2.png' %}" height="150px" width="150px" alt="Logo" ></a>
-                        <br>
-                        <br>
-                    <h4 class="text-center">Log in.</h4>
-
-                    <form method="POST">
+      
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+          <div class="content-wrapper d-flex align-items-center auth px-0">
+            <div class="row w-100 mx-0">
+              <div class="col-lg-4 mx-auto">
+                <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                  <div class="brand-logo">
+                    <div class="row justify-content-center">
+                        <img src="{% static 'admin/inf.png' %}" alt="logo">
+                    </div>
+                    <h4 class="text-center" style="color: #002B5B">Repository Fakultas Teknologi Informasi</h4>
+                    <h5 class="text-center">Universitas Nahdlatul Ulama Yogyakarta</h5>
+      
+                    <form class="pt-3" method="post">
                         {% csrf_token %}
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="{{form.first_name}}" value="{{form.first_name.value}}"
-                                placeholder="first_name">
-                            <div class="form-control-icon">
-                                <i class="bi bi-person"></i>
-                            </div>
+                      <div class="form-group position-relative has-icon-left mb-4">
+                        {{form.first_name}}
+                        <div class="form-control-icon">
+                          <i class="bi bi-person"></i>
                         </div>
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="{{form.first_name}}" value="{{form.first_name.value}}"
-                                placeholder="first_name">
-                            <div class="form-control-icon">
-                                <i class="bi bi-person"></i>
-                            </div>
+                      </div>
+                      <div class="form-group position-relative has-icon-left mb-4">
+                        {{form.last_name}}
+                        <div class="form-control-icon">
+                          <i class="bi bi-person"></i>
                         </div>
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="{{form.first_name}}" value="{{form.first_name.value}}"
-                                placeholder="first_name">
-                            <div class="form-control-icon">
-                                <i class="bi bi-person"></i>
-                            </div>
+                      </div>
+                      <div class="form-group position-relative has-icon-left mb-4">
+                        {{form.email}}
+                        <div class="form-control-icon">
+                          <i class="fas fa-person"></i>
                         </div>
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="{{form.first_name}}" value="{{form.first_name.value}}"
-                                placeholder="first_name">
-                            <div class="form-control-icon">
-                                <i class="bi bi-person"></i>
-                            </div>
+                      </div>
+                      <div class="form-group position-relative has-icon-left mb-4">
+                        {{form.username}}
+                        <div class="form-control-icon">
+                          <i class="bi bi-person"></i>
                         </div>
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="{{form.first_name}}" value="{{form.first_name.value}}"
-                                placeholder="first_name">
-                            <div class="form-control-icon">
-                                <i class="bi bi-person"></i>
-                            </div>
+                      </div>
+                      <div class="form-group position-relative has-icon-left mb-4">
+                        {{form.password1}}
+                        <div class="form-control-icon">
+                          <i class="bi bi-person"></i>
                         </div>
-                        <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="{{form.first_name}}" value="{{form.first_name.value}}"
-                                placeholder="first_name">
-                            <div class="form-control-icon">
-                                <i class="bi bi-person"></i>
-                            </div>
+                      </div>
+                      <div class="form-group position-relative has-icon-left mb-4">
+                        {{form.password2}}
+                        <div class="form-control-icon">
+                          <i class="bi bi-person"></i>
                         </div>
-                        <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
+                      </div>
+      
+                      <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Daftar Akun</button>
                     </form>
-                    <p class="text-center">Don't have an account? <a href="/register">Daftar Akun</a>.</p>
+      
+                    <p class="text-center">Have an account? <a href="/login">Login</a>.</p>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-
-    </div>
+      </div>
 </body>
 
 </html>

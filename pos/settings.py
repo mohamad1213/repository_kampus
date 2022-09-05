@@ -25,7 +25,7 @@ SECRET_KEY = '9pl1&*x2y2jif3!xk2ad2na2q4q)&v)bf%5_cuyk864t5h0k-g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://repositoryfti.herokuapp.com/']
+ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
 
 
 # Application definition

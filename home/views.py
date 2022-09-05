@@ -18,26 +18,26 @@ def home(request):
         return HttpResponseRedirect('/administration/')
     elif group is not None and group.name == 'user':
         group = request.user.groups.first()
-        response = requests.get("https://zenquotes.io/api/quotes/")
-        if response.status_code == 200:
-            ## extracting the core data
-            json_data = response.text()
-            data = json_data.get('q')
-        else:
-            print("Error while getting quote")
+        # response = requests.get("https://zenquotes.io/api/quotes/")
+        # if response.status_code == 200:
+        #     ## extracting the core data
+        #     json_data = response.json()
+        #     data = json_data[1]['q']
+        # else:
+        #     print("Error while getting quote")
         return render(request, 'home.html', {
-            'data':data,
+            # 'data':data,
         })
     else:
-        response = requests.get("https://zenquotes.io/api/quotes/")
-        if response.status_code == 200:
-            ## extracting the core data
-            json_data = response.json()
-            data = json_data[1]['q']
-        else:
-            print("Error while getting quote")
+        # response = requests.get("https://zenquotes.io/api/quotes/")
+        # if response.status_code == 200:
+        #     ## extracting the core data
+        #     json_data = response.json()
+        #     data = json_data[1]['q']
+        # else:
+        #     print("Error while getting quote")
         return render(request, 'home.html', {
-            'data':data,
+            # 'data':data,
         })
 def detail(request, pk):
     post = UploadSkripsi.objects.filter(id=pk)

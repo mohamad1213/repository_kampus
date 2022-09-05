@@ -19,19 +19,19 @@
 
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth px-0">
+            <div class="content-wrapper d-flex align-items-center auth px-0" style="background-color: #dbe7c8;">
                 <div class="row w-100 mx-0">
                     <div class="col-lg-4 mx-auto">
-                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                        <div class="auth-form-light h-100 rounded shadow-lg">
                             <div class="brand-logo">
                                 <div class="row justify-content-center">
                                     <img src="{% static 'admin/inf.png' %}" alt="logo">
                                 </div>
-                                <h4 class="text-center" style="color: #002B5B">Repository Fakultas Teknologi Informasi
+                                <h4 class="text-center" style="color: #000000">Repository Fakultas Teknologi Informasi
                                 </h4>
-                                <h5 class="text-center">Universitas Nahdlatul Ulama Yogyakarta</h5>
-
-                                <form class="pt-3" method="post">
+                                <h5 class="text-center" style="color: #575656;"><b>Universitas Nahdlatul Ulama
+                                        Yogyakarta</b></h5>
+                                <form class="pt-3 pl-4 pr-4 pb-4" method="post">
                                     {% csrf_token %}
                                     <div class="form-group mb-4">
                                         {{form.username}}
@@ -62,12 +62,11 @@
                                         {{ form.errors }}
                                     </div>
                                     {% endif %}
-
-                                    <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Daftar
-                                        Akun</button>
-                                </form>
-
-                                <p class="text-center">Sudah Punya akun? <a href="{% url 'login' %}">Login</a>.</p>
+                                    <button type="submit" class="btn btn-block  font-weight-medium auth-form-btn"
+                                        style="background-color: #7D9D9C; color: #fff; font-weight: bold;">Daftar Akun</button>
+                                    </form>
+                                    <div class="text-center font-weight-light" style="color: #575656;">
+                                        Sudah Punya akun ? <a href="{% url 'login' %}" style="color: #94b49f; font-weight: bold;"><b>Masuk</b></a>
                             </div>
                         </div>
                     </div>

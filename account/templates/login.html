@@ -18,33 +18,33 @@
 <body>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
+      <div class="content-wrapper d-flex align-items-center auth px-0" style="background-color: #dbe7c8;">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <div class="auth-form-light rounded text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
                 <div class="row justify-content-center">
                     <img src="{% static 'admin/inf.png' %}" alt="logo">
                 </div>
-              <h4 class="text-center" style="color: #002B5B">Repository Fakultas Teknologi Informasi</h4>
-              <h5 class="text-center">Universitas Nahdlatul Ulama Yogyakarta</h5>
+              <h4 class="text-center" style="color: #000000">Repository Fakultas Teknologi Informasi</h4>
+              <h5 class="text-center" style="color: #575656;"><b>Universitas Nahdlatul Ulama Yogyakarta</b></h5>
               <form class="pt-3" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                  <input type="text" name="username" class="form-control rounded"  placeholder="Username">
+                  <input type="text" name="username" class="form-control rounded"  placeholder="Nama Pengguna">
                 </div>
                 <div class="form-group">
                   <input type="password" name="password" class="form-control rounded" placeholder="Password">
                 </div>
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Login</button>
+                  <button type="submit" class="btn btn-block  font-weight-medium auth-form-btn" style="background-color: #7D9D9C; color: #fff; font-weight: bold;">Masuk</button>
           
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
-                  <a href="#" class="auth-link text-black">Lupa Password</a>
+                  <a href="{% url 'reset_password' %}" class="auth-link" style="color: #575656;">Lupa Password</a>
                 </div>
-                <div class="text-center mt-4 font-weight-light">
-                 Belum Punya akun <a href="{% url 'register' %}" class="text-primary">Daftar</a>
+                <div class="text-center mt-4 font-weight-light" style="color: #575656;">
+                 Belum Punya akun <a href="{% url 'register' %}" style="color: #94b49f; font-weight: bold;"><b>Daftar</b></a>
                 </div>
               </form>
             </div>

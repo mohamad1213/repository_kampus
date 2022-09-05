@@ -11,10 +11,10 @@ class CreateUserForm(UserCreationForm):
 		fields = ['username', 'email', 'password1', 'password2']
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		self.fields['username'].widget.attrs.update({ 'class': 'form-control rounded','type': 'text','placeholder':'Nama Pengguna..' })
-		self.fields['email'].widget.attrs.update({ 'class': 'form-control rounded','type':'email', 'placeholder':'Email..' })
-		self.fields['password1'].widget.attrs.update({ 'class': 'form-control rounded', 'type':'password' , 'placeholder':'Password..' })
-		self.fields['password2'].widget.attrs.update({ 'class': 'form-control rounded','type':'password' , 'placeholder':'Re-Password..' })
+		self.fields['username'].widget.attrs.update({ 'class': 'form-control rounded border-secondary','type': 'text','placeholder':'Nama Pengguna..' })
+		self.fields['email'].widget.attrs.update({ 'class': 'form-control rounded border-secondary','type':'email', 'placeholder':'Email..' })
+		self.fields['password1'].widget.attrs.update({ 'class': 'form-control rounded border-secondary', 'type':'password' , 'placeholder':'Password..' })
+		self.fields['password2'].widget.attrs.update({ 'class': 'form-control rounded border-secondary','type':'password' , 'placeholder':'Re-Password..' })
 
 class PasswordResetForm(UserCreationForm):
 	class Meta:

@@ -1,10 +1,10 @@
 {% load static %}
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-    <a class="navbar-brand brand-logo mr-5" href="/"><img src="{% static 'admin/template/images/logo.svg' %}"
-        class="mr-2" alt="logo" /></a>
-    <a class="navbar-brand brand-logo-mini" href="/administration"><img
-        src="{% static 'admin/template/images/logo-mini.svg' %}" alt="logo" /></a>
+    <a class="navbar-brand brand-logo mr-5" href="/"><img src="{% static 'admin/inf.png' %}"
+        class="mr-2" alt="logo" />Cerdas</a>
+    <a class="navbar-brand brand-logo-mini" href="/"><img
+        src="{% static 'admin/inf.png' %}" alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -29,22 +29,26 @@
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-          <img src="{% static 'admin/template/images/faces/face28.jpg' %}" alt="profile" />
+          <img src="{% static 'admin/defaultavatar.png' %}" alt="profile" />
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           {% if request.user.is_authenticated %}
           <a class="dropdown-item" href="{% url 'home:list_fav' %}">
-            <i class="ti-settings text-primary"></i>
+            <i class="fa-solid fa-bookmark" style="color: #7D9D9C;"></i>
             Bookmark
           </a>
+          <a class="dropdown-item" href="{% url 'home:list_fav' %}">
+            <i class="fa-solid fa-user-tie" style="color: #7D9D9C;"></i>
+            Edit Profil
+          </a>
           <a class="dropdown-item" href="{% url 'logout' %}">
-            <i class="ti-power-off text-primary"></i>
-            Logout
+            <i class="fa-sharp fa-solid fa-power-off" style="color: #7D9D9C;"></i>
+            Keluar
           </a>
           {% else %}
           <a class="dropdown-item" href="{% url 'login' %}">
-            <i class="ti-settings text-primary"></i>
-            Login
+            <i class="fa-solid fa-right-to-bracket" style="color: #7D9D9C;"></i>
+            Masuk
           </a>
           {% endif %}
         </div>

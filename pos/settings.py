@@ -27,8 +27,8 @@ DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 
-# ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
+# ALLOWED_HOSTS = ['*']
 
 
 
@@ -79,27 +79,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pos.wsgi.application'
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'd8r731qg6bo2en',
-#         'USER': 'bswzrvoqjfzwxd',
-#         'PASSWORD': '0758d8f3284684ed03c4828a27624141c6e5be03b0000ea59eb6df39064d56ef',
-#         'HOST': 'ec2-3-208-79-113.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'repository2',
-        'USER': 'postgres',
-        'PASSWORD': 'tatam123',
-        'HOST': 'localhost',
+        'NAME': 'd8r731qg6bo2en',
+        'USER': 'bswzrvoqjfzwxd',
+        'PASSWORD': '0758d8f3284684ed03c4828a27624141c6e5be03b0000ea59eb6df39064d56ef',
+        'HOST': 'ec2-3-208-79-113.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'repository2',
+#         'USER': 'postgres',
+#         'PASSWORD': 'tatam123',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 # from django.core.servers.basehttp import WSGIServer
 # WSGIServer.handle_error = lambda *args, **kwargs: None

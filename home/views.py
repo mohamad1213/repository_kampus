@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, FileResponse
 from admin1.models import *
 from django.template.loader import render_to_string, get_template
 from admin1.forms import *
@@ -10,7 +10,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from itertools import chain
+from django.conf import settings
 import requests
+import os
 def home(request):
     group = request.user.groups.first()
     if group is not None and group.name == 'admin':
@@ -68,13 +70,7 @@ def detail(request, pk):
 @login_required(login_url='/accounts/')
 def user_detail(request, id):
     data = Upload.objects.filter(pk=id)
-    for u in data:
-        upload = f'media/{u.upload}'
-    return render(request, 'user/detail_view.html', {
-        'data': data,
-        'upload':upload
 
-    })
 
 def artists_view(request):
     if 'q' in request.GET:

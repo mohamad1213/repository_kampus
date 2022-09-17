@@ -1,6 +1,4 @@
-from django.http import HttpResponse, JsonResponse, FileResponse
 from admin1.models import *
-from django.template.loader import render_to_string, get_template
 from admin1.forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -10,9 +8,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from itertools import chain
-from django.conf import settings
-import requests
-import os
 def home(request):
     group = request.user.groups.first()
     if group is not None and group.name == 'admin':
@@ -20,24 +15,10 @@ def home(request):
         return HttpResponseRedirect('/administration/')
     elif group is not None and group.name == 'user':
         group = request.user.groups.first()
-        # response = requests.get("https://zenquotes.io/api/quotes/")
-        # if response.status_code == 200:
-        #     ## extracting the core data
-        #     json_data = response.json()
-        #     data = json_data[1]['q']
-        # else:
-        #     print("Error while getting quote")
         return render(request, 'home.html', {
             # 'data':data,
         })
     else:
-        # response = requests.get("https://zenquotes.io/api/quotes/")
-        # if response.status_code == 200:
-        #     ## extracting the core data
-        #     json_data = response.json()
-        #     data = json_data[1]['q']
-        # else:
-        #     print("Error while getting quote")
         return render(request, 'home.html', {
             # 'data':data,
         })
@@ -49,23 +30,6 @@ def detail(request, pk):
         'skripsi':post,
     }
     return render(request, 'details.html' ,context)
-
-# def detail(request, pk):
-#     post = UploadSkripsi.objects.filter(id=pk)
-#     post1 = Upload.objects.filter(id=pk)
-#     print('oke')
-#     if post:
-#         fav = False
-#         for u in post:
-#             if u.favourite.filter(id=request.user.id).exists():
-#                 fav = True
-#         return render(request, 'details.html', {'skripsi':post, 'is_favourite':fav})
-#     elif post1:
-#         fav = False
-#         for u in post1:
-#             if u.favourite.filter(id=request.user.id).exists():
-#                 fav = True
-#         return render(request, 'details_katul.html', {'kartul':post1 ,'is_favourite':fav})
 
 @login_required(login_url='/accounts/')
 def user_detail(request, id):
@@ -109,7 +73,8 @@ def post_favorite_kartul(request, pk):
     else:
         post1.favourite.add(request.user)
     return HttpResponseRedirect('/results/')
-    
+
+@login_required(login_url='/accounts/')
 def list_fav(request):
     user = request.user
     kartul = user.fav.all()
@@ -119,9 +84,9 @@ def list_fav(request):
         'fav_post':fav_post,
     }
     return render(request, 'bookmark.html', context)
-def remove(request,pk):
-     product = get_object_or_404(Contoh,pk=pk)
-     if request.user in product.favourite.all():
-         product.favourite.remove(request.user)
-     return HttpResponseRedirect('/')
+# def remove(request,pk):
+#      product = get_object_or_404(Contoh,pk=pk)
+#      if request.user in product.favourite.all():
+#          product.favourite.remove(request.user)
+#      return HttpResponseRedirect('/')
 

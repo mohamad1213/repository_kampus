@@ -1,6 +1,11 @@
 {% load static %}
 {% include "frontend/header.html" %}
 {% include "frontend/sidebar.html" %}
-{% block content %}
-{% endblock %}
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel" style="width: 100%;">
+        {% include 'frontend/messages.html' %}
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
 {% include "frontend/footer.html" %}

@@ -1,20 +1,20 @@
 {% extends 'administration/base.html' %}
 {% block content %}
-<div class="content-wrapper">
-    <div class="row">
-        <div class="col-md-12 grid-margin">
-            <div class="row">
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Edit Skripsi</h3>
+<form class="forms-sample" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin">
+                <div class="row">
+                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                        <h3 class="font-weight-bold">Edit Skripsi</h3>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <form class="forms-sample" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Nama Penulis</label>
@@ -32,17 +32,17 @@
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Tahun</label>
                             <input type="text" class="form-control" name="tahun_penyelesaian"
-                            value="{{data.tahun_penyelesaian}}" />
+                                value="{{data.tahun_penyelesaian}}" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label>Prodi</label>
                             <select id="prodi" class="form-control" name="prodi">
-                                  <option value="informatika" >Informatika</option>
-                                  <option value="Teknik Komputer" >Teknik Komputer</option>
-                                  <option value="Teknik Elektro" >Teknik Elektro</option>
-                              </select>
+                                <option value="informatika">Informatika</option>
+                                <option value="Teknik Komputer">Teknik Komputer</option>
+                                <option value="Teknik Elektro">Teknik Elektro</option>
+                            </select>
                         </div>
                         <div class="form-group mb-3 col-md-6">
                             <label>Cover</label>
@@ -158,9 +158,9 @@
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 {% endblock %}

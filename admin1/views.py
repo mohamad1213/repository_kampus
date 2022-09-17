@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import os
+from django.contrib.auth.decorators import login_required
+
 
 @login_required(login_url='/accounts/')
 def index(request):

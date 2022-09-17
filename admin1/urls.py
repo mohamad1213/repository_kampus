@@ -1,18 +1,22 @@
 from django.urls import path
 
-
+from admin1.views import ProfileView
 app_name = 'administration'
+
 from . import views
 urlpatterns = [
+    path('profile/', ProfileView.as_view(), name='profile'),
     path('', views.index, name='admin'),
-    path('profile/', views.profile, name="profile"),
-    path('profile/<pk>/edit', views.accountSettings, name="profile-edit"),
-    path('karya_tulis/', views.karya_tulis, name='karya_tulis'),
-    path('karya_tulis/<pk>/detail/', views.detail_karya_tulis, name='detail_karya_tulis'),
-    path('karya_tulis/<pk>/update/', views.update_karya_tulis, name='update_karya_tulis'),
-    path('karya_tulis/<pk>/delete/', views.delete_karya_tulis, name='delete_karya_tulis'),
-    path('skripsi/', views.skripsi, name='skripsi'),
-    path('skripsi/<pk>/update/', views.update_skripsi, name='update_skripsi'),
-    path('skripsi/<pk>/delete/', views.delete_skripsi, name='delete_skripsi'),
-    path('skripsi/<pk>/detail/', views.detail_skripsi, name='detail_skripsi'),
+    # path('profile/', views.profile, name="profile"),
+    path('profile/edit/<pk>/', views.accountSettings, name="profile-edit"),
+    path('journal/', views.ListJournal, name='journal'),
+    path('journal/create/', views.CreateJournal, name='create_journal'),
+    path('journal/detail/<pk>/', views.DetailJournal, name='detail_journal'),
+    path('journal/update/<pk>/', views.UpdateJournal, name='update_journal'),
+    path('journal/delete/<pk>/', views.DeleteJournal, name='delete_journal'),
+    path('skripsi/', views.ListSkripsi, name='skripsi'),
+    path('skripsi/create/', views.CreateSkrispi, name='create_skripsi'),
+    path('skripsi/update/<pk>/', views.UpdateSkripsi, name='update_skripsi'),
+    path('skripsi/delete/<pk>/', views.DeleteSkrispi, name='delete_skripsi'),
+    path('skripsi/detail/<pk>/', views.DetailSkripsi, name='detail_skripsi'),
 ]

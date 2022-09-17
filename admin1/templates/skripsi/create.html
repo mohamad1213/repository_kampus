@@ -1,0 +1,140 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+<form class="forms-sample" method="post" enctype="multipart/form-data">
+    {% load crispy_forms_tags %}
+    {% csrf_token %}
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin">
+                <div class="row">
+                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                        <h3 class="font-weight-bold">Tambah Skripsi</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Nama Penulis</label>
+                            {{form.nama_penulis}}
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Judul Skripsi</label>
+                            {{form.judul_laporan}}
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">NIM </label>
+                            {{form.nim_siswa}}
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Tahun</label>
+                            {{form.tahun_penyelesaian}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-md-12">
+                            <label>Abstrak</label>
+                            {{form.abstrak}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Prodi</label>
+                            {{form.prodi}}
+
+                        </div>
+                        <div class="form-group mb-3 col-md-6">
+                            <label>Cover</label>
+                            <div class="input-group col-xs-12">
+                                {{form.cover}}
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-md-6">
+                            <label>Daftar Isi</label>
+
+                            <div class="input-group col-xs-12">
+                                {{form.daftarisi}}
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3 col-md-6">
+                            <label>BAB I</label>
+                            <div class="input-group col-xs-12">
+                                {{form.bab1}}
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-md-6">
+                            <label>BAB II</label>
+                            <div class="input-group col-xs-12">
+                                {{form.bab2}}
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3 col-md-6">
+                            <label>BAB III</label>
+                            <div class="input-group col-xs-12">
+                                {{form.bab3}}
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-md-6">
+                            <label>BAB IV</label>
+                            <div class="input-group col-xs-12">
+                                {{form.bab4}}
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3 col-md-6">
+                            <label>BAB V</label>
+                            <div class="input-group col-xs-12">
+                                {{form.bab5}}
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-md-6">
+                            <label>Lampiran</label>
+                            <div class="input-group col-xs-12">
+                                {{form.lampiran}}
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+{% endblock %}

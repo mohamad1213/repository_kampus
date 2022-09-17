@@ -3,53 +3,154 @@
 
 {% block content %}
 <div class="content-wrapper">
-    <!-- Content -->
-
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"> Profile</h4>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card mb-4">
-                    <!-- Account -->
-                    {% for u in data %}
-                    <div class="card-body">
-                        <div class="d-flex align-items-start align-items-sm-center gap-4">
-                            <img src="{{u.profile_pic.url}}" alt="user-avatar" class="d-block rounded"
-                                height="100" width="100" id="uploadedAvatar" />
-                                <a href="/administration/profile/{{u.pk}}/edit" class="btn btn-primary me-2">Update data</a>
-
-                                <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
-                        </div>
-                    </div>
-                    <hr class="my-0" />
-                    <div class="card-body">
-                            <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <label  class="form-label">Nama lengkap</label>
-                                    <input class="form-control" type="text" readonly value="{{u.name}}"
-                                        autofocus />
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="lastName" class="form-label">Email</label>
-                                    <input class="form-control" type="text" readonly value="{{u.email}}" />
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Telepon</label>
-                                    <input class="form-control" type="text" readonly
-                                        value="{{u.phone}}" />
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="organization" class="form-label">Alamat</label>
-                                    <input type="text" class="form-control" readonly
-                                        value="{{u.alamat}}" />
-                                </div>
-                            </div>
-                            {% endfor %}
-                    </div>
-                    <!-- /Account -->
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold">Profile</h3>
                 </div>
             </div>
         </div>
     </div>
-    {% endblock %}
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <img src="{{ profile.get_avatar }}" alt="Admin" class="rounded-circle p-1 bg-primary"
+                            width="200px" height="200px">
+                        <div class="mt-2">
+                            <h4>{{ profile.user.get_full_name }}</h4>
+                            <p class="text-muted font-size-sm">{{ profile.address|default:'' }}</p>
+                        </div>
+                    </div>
+                    <hr class="my-1">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Nama Pengguna</h6>
+                            <span class="text-secondary">{{ profile.user.    }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Email</h6>
+                            <span class="text-secondary">{{ profile.email }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Tanggal Lahir</h6>
+                            <span class="text-secondary">{{ profile.birtday}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Nomor Telepon </h6>
+                            <span class="text-secondary">{{ profile.phone }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card">
+                <form action="{% url 'administration:profile' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <div>
+                                    <label for="first_name">Nama Depan</label>
+                                    <input name="first_name" class="form-control" id="first_name" type="text"
+                                        placeholder="Nama depan" value="{{ profile.first_name }}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div>
+                                    <label for="last_name">Nama Belakang</label>
+                                    <input name="last_name" class="form-control" id="last_name" type="text"
+                                        placeholder="Nama Belakang" value="{{ profile.last_name }}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label for="birthday">Tanggal Lahir</label>
+                                    <input name="birthday" class="form-control" id="birthday" type="date"
+                                        placeholder="dd/mm/yyyy" value="{{ profile.birtday}}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label for="phone">Nomor Telpon</label>
+                                    <input name="phone" class="form-control" id="phone" type="number"
+                                        placeholder="+62-345 678 910" value="{{ profile.phone }}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input name="email" class="form-control" id="email" type="email"
+                                        placeholder="name@company.com" value="{{ profile.user.email }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9 mb-2">
+                                <div class="form-group">
+                                    <label for="address">Alamat</label>
+                                    <input name="address" class="form-control" id="address" type="text"
+                                        placeholder="Alamat" value="{{ profile.address|default:'' }}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label for="avatar">Tambahkan Foto</label>
+                                    <input name="avatar" class="form-control" type="file">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label for="avatar">Format Gambar</label>
+                                    <div class="d-md-block text-left">
+                                        <div class="text-gray small">JPG, GIF or PNG. Max size of 800K</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<style>
+    body {
+        background: -webkit-linear-gradient(left, #dfdeeb, #00c6ff);
+
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid transparent;
+        border-radius: .25rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+    }
+
+    .me-2 {
+        margin-right: .5rem !important;
+    }
+</style>
+
+{% endblock %}

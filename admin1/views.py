@@ -1,4 +1,3 @@
-from django.http import HttpResponseRedirect, JsonResponse, HttpResponseNotAllowed, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from home.models import *
@@ -8,6 +7,12 @@ from django.contrib import messages
 import os
 from django.contrib.auth.decorators import login_required
 
+from django.utils.decorators import method_decorator
+from django.views.generic import View
+from admin1.forms import ProfileForm, form_validation_error
+
+
+######################################## DASHBOARD #####################################
 
 @login_required(login_url='/accounts/')
 def index(request):
@@ -15,9 +20,10 @@ def index(request):
     karlis = Upload.objects.filter(owner=request.user)
     context ={'data':len(skripsi),'karlis':len(karlis)}
     return render(request,"index.html", context)
-#karya_tulis 
+
+######################################## SKRIPSI #####################################
 @login_required(login_url='/accounts/')
-def karya_tulis(request):
+def ListJournal(request):
     tasks = Upload.objects.filter(owner=request.user)
     form_input = UploadForm()
     if request.POST:
@@ -26,17 +32,32 @@ def karya_tulis(request):
             form_input.instance.owner = request.user
             form_input.save()
             messages.success(request, 'Data telah ditambahkan.')
-            return redirect('/administration/karya_tulis/')
+            return redirect('/administration/journal/')
         else:
             messages.error(request, 'A problem has been occurred while submitting your data.')
             print(form_input.errors)
-    return render(request, 'karya_tulis/index.html',{
+    return render(request, 'journal/index.html',{
         'form' : form_input,
         'data': tasks,
         
     })
+def CreateJournal(request):
+    form_input = UploadForm()
+    if request.POST:
+        form_input = UploadForm(request.POST, request.FILES)
+        if form_input.is_valid():
+            form_input.instance.owner = request.user
+            form_input.save()
+            messages.success(request, 'Data telah ditambahkan.')
+            return redirect('/administration/journal/')
+    else:
+        form_input = UploadForm()
+    context ={
+        'form':form_input
+    }
+    return render(request, 'journal/create.html', context)
 @login_required(login_url='/accounts/')
-def update_karya_tulis(req, pk):
+def UpdateJournal(req, pk):
     instance = Upload.objects.get(id=pk)
     if req.POST:
         if len(req.FILES) != 0:
@@ -51,25 +72,30 @@ def update_karya_tulis(req, pk):
         instance.nama_penulis = req.POST.get('nama_penulis')
         instance.save()
         messages.success(req, "Data Telah diupdate")
-        return redirect('/administration/karya_tulis/')
+        return redirect('/administration/journal/')
     context = {"data":instance}
-    return render(req, 'karya_tulis/update.html', context) 
+    return render(req, 'journal/update.html', context) 
 
 @login_required(login_url='/accounts/')
-def delete_karya_tulis(req, pk):
+def DeleteJournal(req, pk):
     Upload.objects.get(id=pk).delete()
     messages.success(req, 'data telah di hapus.')
-    return redirect('/administration/karya_tulis/')
+    return redirect('/administration/journal/')
 
 @login_required(login_url='/accounts/')
-def detail_karya_tulis(req, pk):
+def DetailJournal(req, pk):
     data = Upload.objects.filter(id=pk).first()
-    return render(req, 'karya_tulis/detail.html', {"data":data})
+    return render(req, 'journal/detail.html', {"data":data})
 
-##Berita
+######################################## SKRIPSI #####################################
 @login_required(login_url='/accounts/')
-def skripsi(request):
+def ListSkripsi(request):
     tasks = UploadSkripsi.objects.filter(owner=request.user)
+    return render(request, 'skripsi/index.html',{
+        'data': tasks,
+        
+    })
+def CreateSkrispi(request):
     form_input = UploadSkripsiForm()
     if request.POST:
         form_input = UploadSkripsiForm(request.POST, request.FILES)
@@ -78,16 +104,14 @@ def skripsi(request):
             form_input.save()
             messages.success(request, 'Data telah ditambahkan.')
             return redirect('/administration/skripsi/')
-        else:
-            messages.error(request, 'A problem has been occurred while submitting your data.')
-            print(form_input.errors)
-    return render(request, 'skripsi/index.html',{
-        'form' : form_input,
-        'data': tasks,
-        
-    })
+    else:
+        form_input = UploadSkripsiForm()
+    context ={
+        'form':form_input
+    }
+    return render(request, 'skripsi/create.html', context)
 @login_required(login_url='/accounts/')
-def update_skripsi(req, pk):
+def UpdateSkripsi(req, pk):
     instance = UploadSkripsi.objects.get(id=pk)
     if req.POST:
         if len(req.FILES) != 0:
@@ -134,13 +158,13 @@ def update_skripsi(req, pk):
     return render(req, 'skripsi/update.html', context) 
     
 @login_required(login_url='/accounts/')
-def delete_skripsi(req, pk):
+def DeleteSkrispi(req, pk):
     UploadSkripsi.objects.get(id=pk).delete()
     messages.success(req, 'data telah di hapus.')
     return redirect('/administration/skripsi/')
 
 @login_required(login_url='/accounts/')
-def detail_skripsi(req, pk):
+def DetailSkripsi(req, pk):
     data = UploadSkripsi.objects.filter(id=pk).first()
     return render(req, 'skripsi/detail.html', {"data":data})
 
@@ -162,8 +186,29 @@ def accountSettings(req, pk):
     context = {"data":instance}
     return render(req, 'profile/update.html', context)
 
-@login_required(login_url='/accounts/')
-def profile(req):
-    data = Profile.objects.all()
-    return render(req, 'profile/index.html', {'data': data})
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class ProfileView(View):
+    model = Profile
+
+    def dispatch(self, request, *args, **kwargs):
+        self.profile, __ = Profile.objects.get_or_create(user=request.user)
+        return super(ProfileView, self).dispatch(request, *args, **kwargs)
+    def get(self, request):
+        context = {'profile': self.profile, 'segment': 'profile'}
+        return render(request, 'profile/index.html', context)
+
+    def post(self, request):
+        form = ProfileForm(request.POST, request.FILES, instance=self.profile)
+        if form.is_valid():
+            form.instance.user=request.user
+            # form.get_avatar = request.FILES['profile_pic']
+            profile = form.save()
+            profile.user.first_name = form.cleaned_data.get('first_name')
+            profile.user.last_name = form.cleaned_data.get('last_name')
+            profile.user.email = form.cleaned_data.get('email')
+            profile.user.save()
+
+            messages.success(request, 'Data berhasil ditambahkan')
+            messages.error(request, form_validation_error(form))
+        return redirect('/administration/profile/') 
 

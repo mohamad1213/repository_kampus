@@ -1,18 +1,23 @@
 from django.db import models
 from .validator import validate_file_extension
+from django.conf.urls.static import static
 from django.contrib.auth.models import User
 import uuid
 class Profile(models.Model):
-	user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-	name = models.CharField(max_length=200, null=True)
-	phone = models.CharField(max_length=200, null=True)
-	email = models.CharField(max_length=200, null=True)
-	alamat = models.TextField(null=True)
-	profile_pic = models.ImageField(null=True, blank=True)
-	date_created = models.DateTimeField(auto_now_add=True, null=True)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200, null=True)
+    alamat = models.TextField(null=True)
+    profile_pic = models.ImageField(upload_to="media/",null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
 
-	def __str__(self):
-		return self.name
+    def __str__(self):
+        return self.name
+    @property
+    def get_avatar(self):
+        return self.profile_pic.url if self.profile_pic else static('/admin/defaultavatar.png')
+
 
 
 class Upload(models.Model):

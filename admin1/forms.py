@@ -62,7 +62,7 @@ class ProfileForm(ModelForm):
         self.fields['alamat'].widget.attrs.update({ 'class': 'form-control', 'type': 'text' })
         self.fields['name'].widget.attrs.update({ 'class': 'form-control', 'type': 'text' })
         self.fields['profile_pic'].widget.attrs.update({ 'class': 'form-control', 'type': 'file' })
-        self.fields['phone'].widget.attrs.update({ 'class': 'form-control', 'type': 'number' })
+        self.fields['phone'].widget.attrs.update({ 'class': 'form-control', 'type': 'number'})
 
 class EditProfileForm(ModelForm):
     profile_pic = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control'}))

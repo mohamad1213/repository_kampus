@@ -1,14 +1,14 @@
 from django.urls import path
-
-from admin1.views import ProfileView
+from django.conf import settings
+from django.conf.urls.static import static
+# from admin1.views import ProfileView
 app_name = 'administration'
 
 from . import views
 urlpatterns = [
-    path('profile/', ProfileView.as_view(), name='profile'),
+    # path('profile/', ProfileView.as_view(), name='profile'),
     path('', views.index, name='admin'),
-    # path('profile/', views.profile, name="profile"),
-    path('profile/edit/<pk>/', views.accountSettings, name="profile-edit"),
+    path('profile/', views.AccountsSettings, name="profile"),
     path('journal/', views.ListJournal, name='journal'),
     path('journal/create/', views.CreateJournal, name='create_journal'),
     path('journal/detail/<pk>/', views.DetailJournal, name='detail_journal'),
@@ -19,4 +19,5 @@ urlpatterns = [
     path('skripsi/update/<pk>/', views.UpdateSkripsi, name='update_skripsi'),
     path('skripsi/delete/<pk>/', views.DeleteSkrispi, name='delete_skripsi'),
     path('skripsi/detail/<pk>/', views.DetailSkripsi, name='detail_skripsi'),
-]
+] 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

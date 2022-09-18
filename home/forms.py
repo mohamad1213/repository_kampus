@@ -10,8 +10,14 @@ class LoginForm(UserCreationForm):
          model = User
          fields = ['username', 'password1']
 
-class ImageForm(ModelForm):
+class ProfileUserForm(ModelForm):
     class Meta:
-         model = Home
-         fields = ['logo']
-    
+        model = ProfileUser
+        exclude = ['user']
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs.update({ 'class': 'form-control', 'type': 'email' })
+        self.fields['alamat'].widget.attrs.update({ 'class': 'form-control', 'type': 'text' })
+        self.fields['name'].widget.attrs.update({ 'class': 'form-control', 'type': 'text' })
+        self.fields['profile_pic'].widget.attrs.update({ 'class': 'form-control', 'type': 'file' })
+        self.fields['phone'].widget.attrs.update({ 'class': 'form-control', 'type': 'number'})

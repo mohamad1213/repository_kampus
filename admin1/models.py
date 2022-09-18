@@ -7,16 +7,13 @@ class Profile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
+    forget_password_token = models.CharField(default='', max_length=100)
     email = models.CharField(max_length=200, null=True)
     alamat = models.TextField(null=True)
-    profile_pic = models.ImageField(upload_to="media/",null=True, blank=True)
+    profile_pic = models.ImageField(upload_to="profile",default='defaultavatar.png',null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-
     def __str__(self):
-        return self.name
-    @property
-    def get_avatar(self):
-        return self.profile_pic.url if self.profile_pic else static('/admin/defaultavatar.png')
+        return str(self.name) if self.name else ''
 
 
 

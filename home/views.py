@@ -8,6 +8,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from itertools import chain
+
+from home.forms import ProfileUserForm
 def home(request):
     group = request.user.groups.first()
     if group is not None and group.name == 'admin':
@@ -89,4 +91,22 @@ def list_fav(request):
 #      if request.user in product.favourite.all():
 #          product.favourite.remove(request.user)
 #      return HttpResponseRedirect('/')
+
+
+@login_required(login_url='/accounts/')
+def AccountsSettings(request):
+    user = request.user.profileuser
+    form = ProfileUserForm(instance=user)
+    if request.POST:
+        form = ProfileUserForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Data telah ditambahkan.')
+            return redirect('/profile/')
+    else:
+        form = ProfileUserForm(instance=user)
+    context ={
+        'form':form,
+    }
+    return render(request, 'profile/index.html', context)
 

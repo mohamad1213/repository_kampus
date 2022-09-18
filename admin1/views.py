@@ -1,16 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
-from home.models import *
+from .models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import os
 from django.contrib.auth.decorators import login_required
-
-from django.utils.decorators import method_decorator
-from django.views.generic import View
-from admin1.forms import ProfileForm, form_validation_error
-
 
 ######################################## DASHBOARD #####################################
 
@@ -186,29 +181,22 @@ def accountSettings(req, pk):
     context = {"data":instance}
     return render(req, 'profile/update.html', context)
 
-@method_decorator(login_required(login_url='login'), name='dispatch')
-class ProfileView(View):
-    model = Profile
-
-    def dispatch(self, request, *args, **kwargs):
-        self.profile, __ = Profile.objects.get_or_create(user=request.user)
-        return super(ProfileView, self).dispatch(request, *args, **kwargs)
-    def get(self, request):
-        context = {'profile': self.profile, 'segment': 'profile'}
-        return render(request, 'profile/index.html', context)
-
-    def post(self, request):
-        form = ProfileForm(request.POST, request.FILES, instance=self.profile)
+@login_required(login_url='/accounts/')
+def AccountsSettings(request):
+    user = request.user.profile
+    form = ProfileForm(instance=user)
+    if request.POST:
+        form = ProfileForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
-            form.instance.user=request.user
-            # form.get_avatar = request.FILES['profile_pic']
-            profile = form.save()
-            profile.user.first_name = form.cleaned_data.get('first_name')
-            profile.user.last_name = form.cleaned_data.get('last_name')
-            profile.user.email = form.cleaned_data.get('email')
-            profile.user.save()
-
-            messages.success(request, 'Data berhasil ditambahkan')
-            messages.error(request, form_validation_error(form))
-        return redirect('/administration/profile/') 
+            form.save()
+            messages.success(request, 'Data telah ditambahkan.')
+            return redirect('/administration/profile/')
+    else:
+        form = ProfileForm(instance=user)
+    data = Profile.objects.filter(user=request.user)
+    context ={
+        'form':form,
+        'data':data,
+    }
+    return render(request, 'profile/profile.html', context)
 

@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'pos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'repository2',
+        'NAME': 'repository',
         'USER': 'postgres',
         'PASSWORD': 'tatam123',
         'HOST': 'localhost',
@@ -150,10 +150,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS =[
-    BASE_DIR + "/static",
+    os.path.join(BASE_DIR, 'static') 
 ]
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
-STATIC_ROOT =  os.path.join(BASE_DIR, 'stati') 
 MEDIA_URL = '/media/'
 
 BOOTSTRAP4 = {
@@ -169,3 +168,11 @@ MESSAGE_TAGS ={
     messages.WARNING : 'alert-warning',
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'erepounuyogyakarta@gmail.com'
+EMAIL_HOST_PASSWORD = 'rtzxqndyxhwrwjln'
+# EMAIL_HOST_USER = 'tatammohamad117@gmail.com'
+# EMAIL_HOST_PASSWORD = 'ulppewgpaudrektr'

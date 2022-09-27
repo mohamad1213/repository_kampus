@@ -53,60 +53,75 @@
                         type="button" role="tab" aria-controls="v-pills-dapus" aria-selected="false">DAFTAR
                         PUSTAKA</button>
                     <br>
+                    <button class="nav-link" id="v-pills-lampiran-tab" data-toggle="pill"
+                        data-target="#v-pills-lampiran" type="button" role="tab" aria-controls="v-pills-lampiran"
+                        aria-selected="false">LAMPIRAN</button>
+                    <br>
                 </div>
             </div>
             <div class="col-9">
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                         aria-labelledby="v-pills-home-tab">
+                        <a href="{{b.cover.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh Cover</a>
                         <div class="embed-responsive embed-responsive-4by3">
                             <iframe class="embed-responsive-item" src="{{b.cover.url}}" allowfullscreen></iframe>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                        aria-labelledby="v-pills-profile-tab">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <iframe class="embed-responsive-item" src="/{{daftarisi}}" allowfullscreen></iframe>
-                        </div>
-                    </div>
                     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                         aria-labelledby="v-pills-messages-tab">
+                        <a href="{{b.daftarisi.url}}" download
+                            style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh Daftar Isi</a>
                         <div class="embed-responsive embed-responsive-4by3">
-                            <!-- <img src="/{{cover}}" alt="" srcset=""> -->
-                            <!-- <embed src="/{{ cover }}" type="application/pdf" height="700px" width="500px"> -->
-                            <!-- <iframe
-                                    src="https://docs.google.com/gview?url=https://path.com/to/your/pdf.pdf&embedded=true"
-                                    style="width:600px; height:500px;" frameborder="0"></iframe> -->
-
-                            <!-- <object data="/media/test.pdf" type="application/pdf" width="100%" height="100%">
-                                    <p>Alternative text - include a link <a href="/media/test.pdf">to the PDF!</a></p>
-                                  </object> -->
-                            <iframe class="embed-responsive-item" src="/{{bab1}}" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" src="{{b.daftarisi.url}}" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bab1" role="tabpanel" aria-labelledby="v-pills-bab1-tab">
+                        <a href="{{b.bab1.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh BAB I</a>
                         <div class="embed-responsive embed-responsive-4by3">
-                            <iframe class="embed-responsive-item" src="/{{bab2}}" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" src="{{b.bab1.url}}" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bab2" role="tabpanel" aria-labelledby="v-pills-bab2-tab">
+                        <a href="{{b.bab2.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh BAB II</a>
                         <div class="embed-responsive embed-responsive-4by3">
-                            <iframe class="embed-responsive-item" src="/{{bab3}}" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" src="{{b.bab2.url}}" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bab3" role="tabpanel" aria-labelledby="v-pills-bab3-tab">
+                        <a href="{{b.bab3.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh BAB III</a>
                         <div class="embed-responsive embed-responsive-4by3">
-                            <iframe class="embed-responsive-item" src="/{{bab4}}" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" src="{{b.bab3.url}}" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bab4" role="tabpanel" aria-labelledby="v-pills-bab4-tab">
+                        <a href="{{b.bab4.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh BAB IV</a>
+                        <h5 class="text-center">Hubungi staf</h5>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-ba5" role="tabpanel" aria-labelledby="v-pills-ba5-tab">
+                        <a href="{{b.bab5.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh BAB V</a>
+                        <h5 class="text-center">Hubungi Staf</h5>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-dapus" role="tabpanel" aria-labelledby="v-pills-dapus-tab">
+                        <a href="{{b.dapus.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh Daftar Pustaka</a>
                         <div class="embed-responsive embed-responsive-4by3">
-                            <iframe class="embed-responsive-item" src="/{{bab5}}" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" src="{{b.dapus.url}}" allowfullscreen></iframe>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-bab5" role="tabpanel" aria-labelledby="v-pills-bab5-tab">
+                    <div class="tab-pane fade" id="v-pills-lampiran" role="tabpanel" aria-labelledby="v-pills-bab5-tab">
+                        <a href="{{b.lampiran.url}}" download
+                            style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh Lampiran</a>
                         <div class="embed-responsive embed-responsive-4by3">
-                            <iframe class="embed-responsive-item" src="/{{dapus}}" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" src="{{b.lampiran.url}}" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>

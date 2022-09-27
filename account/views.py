@@ -42,7 +42,7 @@ def loginPage(request):
 				login(request, user)
 				return redirect('home:home')
 			else:
-				messages.info(request, 'Username OR password is incorrect')
+				messages.error(request, 'Username OR password is incorrect')
 
 		context = {}
 		return render(request, 'login.html', context)

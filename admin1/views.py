@@ -4,8 +4,11 @@ from .models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from home.models import ProfileUser
 import os
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
 ######################################## DASHBOARD #####################################
 
@@ -13,10 +16,22 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     skripsi = UploadSkripsi.objects.filter(owner=request.user)
     karlis = Upload.objects.filter(owner=request.user)
-    context ={'data':len(skripsi),'karlis':len(karlis)}
+    profile = ProfileUser.objects.all()
+    context ={'data':len(skripsi),'karlis':len(karlis), 'user':len(profile)}
     return render(request,"index.html", context)
 
 ######################################## SKRIPSI #####################################
+@login_required(login_url='/accounts/')
+def ListMhs(request):
+    profile = ProfileUser.objects.all()
+    return render(request, 'mhs/index.html',{
+        'profile': profile,
+        
+    })
+@login_required(login_url='/accounts/')
+def DetailMhs(req, pk):
+    data = ProfileUser.objects.filter(id=pk).first()
+    return render(req, 'mhs/detail.html', {"data":data})
 @login_required(login_url='/accounts/')
 def ListJournal(request):
     tasks = Upload.objects.filter(owner=request.user)
@@ -36,6 +51,8 @@ def ListJournal(request):
         'data': tasks,
         
     })
+
+@login_required(login_url='/accounts/')
 def CreateJournal(request):
     form_input = UploadForm()
     if request.POST:
@@ -164,39 +181,22 @@ def DetailSkripsi(req, pk):
     return render(req, 'skripsi/detail.html', {"data":data})
 
 @login_required(login_url='/accounts/')
-def accountSettings(req, pk):
-    instance = Profile.objects.get(id=pk)
-    if req.POST:
-        if len(req.FILES) != 0:
-            if len(instance.profile_pic) > 0:
-                os.remove(instance.profile_pic.path)
-            instance.profile_pic = req.FILES['profile_pic']
-        instance.name = req.POST.get('name')
-        instance.phone = req.POST.get('phone')
-        instance.email = req.POST.get('email')
-        instance.alamat = req.POST.get('alamat')
-        instance.save()
-        messages.success(req, "data Telah ditambahkan")
-        return redirect('/administration/profile/')
-    context = {"data":instance}
-    return render(req, 'profile/update.html', context)
-
-@login_required(login_url='/accounts/')
 def AccountsSettings(request):
-    user = request.user.profile
+    user = Profile.objects.filter(user=request.user).first()
     form = ProfileForm(instance=user)
     if request.POST:
         form = ProfileForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
+            form.instance.user = request.user
             form.save()
             messages.success(request, 'Data telah ditambahkan.')
             return redirect('/administration/profile/')
+        else:
+            print(form.errors)
     else:
         form = ProfileForm(instance=user)
-    data = Profile.objects.filter(user=request.user)
     context ={
-        'form':form,
-        'data':data,
+        'form_admin':form,
     }
     return render(request, 'profile/profile.html', context)
 

@@ -1,0 +1,44 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="content-wrapper" style="background-color: #dbe7c8;">
+  <div class="row">
+    <div class="col-md-12 grid-margin">
+      <div class="row">
+        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+          <h3 class="font-weight-bold">Data Pengguna</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-column align-items-center text-center">
+            <img src="{{data.profile_pic.url}}" alt="Admin" class="rounded-circle p-1" width="200px" height="200px">
+          </div>
+          <hr class="my-1">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+              <h6 class="mb-0">Nama Pengguna</h6>
+              <span class="text-secondary">{{data.name}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+              <h6 class="mb-0">Nama Lengkap </h6>
+              <span class="text-secondary">{{data.phone}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+              <h6 class="mb-0">Email</h6>
+              <span class="text-secondary">{{data.email}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+              <h6 class="mb-0">Nomor Telepon </h6>
+              <span class="text-secondary">{{data.date_created}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

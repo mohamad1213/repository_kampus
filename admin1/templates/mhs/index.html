@@ -1,0 +1,54 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="content-wrapper" style="background-color: #dbe7c8;">
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold">Data Pengguna</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Gambar</th>
+                                    <th>Nama Penulis</th>
+                                    <th>Email</th>
+                                    <th>Nomor Telpon</th>
+                                    <th>Tanggal Buat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            {% for u in profile %}
+                            <tbody>
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>
+                                        <img src="{{u.profile_pic.url}}" alt="">
+                                    </td>
+                                    <td>{{u.name}}</td>
+                                    <td>{{u.email}}</td>
+                                    <td>{{u.phone}}</td>
+                                    <td>{{u.date_created}}</td>
+                                    <td>
+                                        <a type="button" class="btn btn-primary" href="/administration/mhs/{{u.pk}}/"><i class="fas fa-eye"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

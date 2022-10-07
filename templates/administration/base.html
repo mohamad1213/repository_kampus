@@ -1,13 +1,9 @@
 {% load static %}
 {% include "administration/header.html" %}
 {% include "administration/sidebar.html" %}
-{% if user.is_authenticated %}
 <div class="main-panel">
   {% include 'administration/messages.html' %}
   {% block content %}
   {% endblock %}
-  {% else %}
-  <p>Please Log in</p>
-  {% endif %}
-
   {% include "administration/footer.html" %}
+</div>

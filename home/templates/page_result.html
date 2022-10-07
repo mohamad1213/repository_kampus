@@ -11,6 +11,7 @@
       <span class="icon-menu"></span>
     </button>
 
+
     <ul class="navbar-nav mr-lg-2">
       <li class="nav-item nav-search d-none d-lg-block">
       </li>
@@ -18,7 +19,11 @@
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+          {% if request.user.is_authenticated %}
+          <img src="/media/{{ request.user.profileuser.profile_pic }}" alt="profile" />
+          {% else %}
           <img src="{% static 'admin/defaultavatar.png' %}" alt="profile" />
+          {% endif %}
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           {% if request.user.is_authenticated %}
@@ -66,11 +71,13 @@
                       {% for u in request.user.groups.all %}
                       {% if u.name == 'user' %}
                       {% if post1 %}
-                      <a href="/results/{{d.pk}}/post_favorite/" class="btn"><i class='bx bxs-bookmark'></i></a>
+                      {% for b in post1 %}
+                      <a href="/results/{{b.pk}}/post_favorite/" class="btn"><i class="fa-solid fa-bookmark"
+                          style="color: #7D9D9C;"></i></a>
+                      {% endfor %}
                       {% elif post2 %}
-                      <a href="/results/{{d.pk}}/hah/" class="btn"><i class='bx bxs-bookmark'></i></a>
-                      {% else %}
-                      <a href="/results/{{d.pk}}/post_favorite/" class="btn"><i class='bx bx-bookmark'></i></a>
+                      <a href="/results/{{d.pk}}/post_favorite/" class="btn"><i class="fa-solid fa-bookmark"
+                          style="color: #7D9D9C;"></i></a>
                       {% endif %}
                       {% endif %}
                       {% endfor %}

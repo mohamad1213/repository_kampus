@@ -51,11 +51,12 @@ def artists_view(request):
         results2 = UploadSkripsi.objects.all()
         results = chain(results1, results2)
     context ={
-        'kartul':results2,
-        'skripsi':results1,
+        'post1':results1,
+        'post2':results2,
         'results': results
     }
     return render(request, 'page_result.html', context)
+
 
 def post_favorite(request, pk):
     post1 = get_object_or_404(UploadSkripsi,id=pk)
@@ -66,15 +67,14 @@ def post_favorite(request, pk):
     else:
         post1.favourite.add(request.user)
         messages.success(request,'Data telah ditambahkan')
-    return HttpResponseRedirect('/results/')
-
+    return HttpResponseRedirect('/list_fav/')
 def post_favorite_kartul(request, pk):
-    post1 = get_object_or_404(Upload,id=pk)
-    if post1.favourite.filter(pk=request.user.id).exists():
-        post1.favourite.remove(request.user)
+    post2 = get_object_or_404(Upload,id=pk)
+    if post2.favourite.filter(pk=request.user.id).exists():
+        post2.favourite.remove(request.user)
     else:
-        post1.favourite.add(request.user)
-    return HttpResponseRedirect('/results/')
+        post2.favourite.add(request.user)
+    return HttpResponseRedirect('/list_fav/')
 
 @login_required(login_url='/accounts/')
 def list_fav(request):
@@ -86,23 +86,23 @@ def list_fav(request):
         'fav_post':fav_post,
     }
     return render(request, 'bookmark.html', context)
-# def remove(request,pk):
-#      product = get_object_or_404(Contoh,pk=pk)
-#      if request.user in product.favourite.all():
-#          product.favourite.remove(request.user)
-#      return HttpResponseRedirect('/')
+
 
 
 @login_required(login_url='/accounts/')
 def AccountsSettings(request):
-    user = request.user.profileuser
+    user = ProfileUser.objects.filter(user=request.user).first()
+    print(user)
     form = ProfileUserForm(instance=user)
     if request.POST:
         form = ProfileUserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
+            form.instance.user = request.user
             form.save()
             messages.success(request, 'Data telah ditambahkan.')
             return redirect('/profile/')
+        else:
+            print(form.errors)
     else:
         form = ProfileUserForm(instance=user)
     context ={

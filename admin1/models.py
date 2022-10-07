@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from .validator import validate_file_extension
 from django.conf.urls.static import static
@@ -7,7 +8,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
-    forget_password_token = models.CharField(default='', max_length=100)
     email = models.CharField(max_length=200, null=True)
     alamat = models.TextField(null=True)
     profile_pic = models.ImageField(upload_to="profile",default='defaultavatar.png',null=True, blank=True)
@@ -40,6 +40,7 @@ class Upload(models.Model):
     upload = models.FileField(default='', upload_to='karyatulis/', null=False, blank=True,validators=[validate_file_extension])
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+    status = models.CharField(default=0, max_length=2)
     favourite = models.ManyToManyField(User, related_name="fav", blank=True)
 
 
@@ -68,6 +69,7 @@ class UploadSkripsi(models.Model):
     bab5 = models.FileField(default='', upload_to='skripsi/', null=False, blank=True,validators=[validate_file_extension])
     dapus = models.FileField(default='', upload_to='skripsi/', null=False, blank=True,validators=[validate_file_extension])
     created_at = models.DateField(auto_now_add=True)
+    status = models.CharField(default=0, max_length=2)
     updated_at = models.DateField(auto_now=True)
     favourite = models.ManyToManyField(User, related_name="fav2", blank=True)
 

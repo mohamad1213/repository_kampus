@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-color: #dbe7c8;">
   <div class="row">
     <div class="col-md-12 grid-margin">
       <div class="row">
@@ -15,80 +15,37 @@
   <div class="row">
     <div class="col-md-12 grid-margin transparent">
       <div class="row">
-        <div class="col-md-3 mb-4 stretch-card transparent">
+        <div class="col-md-4 mb-4 stretch-card transparent">
           <div class="card card-tale">
-            <div class="card-body">
+            <div class="card-body" style="cursor: pointer;" onclick="goTo('/administration/skripsi/')">
               <p class="mb-4">Total Skripsi</p>
               <p class="fs-30 mb-2">{{data}}</p>
             </div>
           </div>
         </div>
-        <div class="col-md-3 mb-4 stretch-card transparent">
-          <div class="card card-dark-blue">
+        <div class="col-md-4 mb-4 stretch-card transparent">
+          <div class="card card-dark-blue" style="cursor: pointer;" onclick="goTo('/administration/skripsi/')">
             <div class="card-body">
               <p class="mb-4">Total Jurnal</p>
               <p class="fs-30 mb-2">{{karlis}}</p>
             </div>
           </div>
         </div>
-        <div class="col-md-3 mb-4 stretch-card transparent">
+        <div class="col-md-4 mb-4 stretch-card transparent">
           <div class="card card-light-blue">
-            <div class="card-body">
-              <p class="mb-4">Number of Meetings</p>
-              <p class="fs-30 mb-2">34040</p>
-              <p>2.00% (30 days)</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-4 stretch-card transparent">
-          <div class="card card-light-danger">
-            <div class="card-body">
-              <p class="mb-4">Number of Clients</p>
-              <p class="fs-30 mb-2">47033</p>
-              <p>0.22% (30 days)</p>
+            <div class="card-body" style="cursor: pointer;" onclick="goTo('/administration/skripsi/')">
+              <p class="mb-4">Total Mahasiswa</p>
+              <p class="fs-30 mb-2">{{user}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <p class="card-title">Repository Report</p>
-            <a href="#" class="text-info">View all</a>
-          </div>
-          <p class="font-weight-500">The total number of sessions within the date range. It is the period time a
-            user is actively engaged with your website, page or app, etc</p>
-          <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
-          <canvas id="sales-chart"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 grid-margin stretch-card">
-      <div class="card position-relative">
-        <div class="card-body">
-          <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2"
-            data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="row">
-                      <div class="col-md-12 mt-3">
-                        <canvas id="north-america-chart"></canvas>
-                        <div id="north-america-legend"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endblock %}
+</div>
+<script>
+  function goTo(url) {
+    window.location.href = url
+  }
+</script>
+{% endblock %}

@@ -28,7 +28,7 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'pos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd8r731qg6bo2en',
-        'USER': 'bswzrvoqjfzwxd',
-        'PASSWORD': '0758d8f3284684ed03c4828a27624141c6e5be03b0000ea59eb6df39064d56ef',
-        'HOST': 'ec2-3-208-79-113.compute-1.amazonaws.com',
+        'NAME': 'd3rhh151h1rjtq',
+        'USER': 'nanesbsctlprrr',
+        'PASSWORD': 'decc2fbd95fce66a52b10b07a48e5569964fe42dca395e0007185ea5f8092efd',
+        'HOST': 'ec2-3-232-16-233.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }

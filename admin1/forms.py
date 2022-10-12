@@ -55,6 +55,9 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         exclude = ['email']
+        widgets={
+            'phone':forms.TextInput(attrs={'type':'number'})
+        }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['alamat'].widget.attrs.update({ 'class': 'form-control', 'type': 'text' })

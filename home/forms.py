@@ -3,8 +3,7 @@ from .models import *
 from home.forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
-
+from django import forms
 class LoginForm(UserCreationForm):
     class Meta:
          model = User
@@ -23,6 +22,9 @@ class ProfileUserForm(ModelForm):
     class Meta:
         model = ProfileUser
         exclude = ['email']
+        widgets={
+            'phone':forms.TextInput(attrs={'type':'number'})
+        }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['alamat'].widget.attrs.update({ 'class': 'form-control', 'type': 'text' })

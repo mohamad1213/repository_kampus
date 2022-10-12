@@ -62,6 +62,8 @@ def CreateJournal(request):
             form_input.save()
             messages.success(request, 'Data telah ditambahkan.')
             return redirect('/administration/journal/')
+        else:
+            print(form_input.errors)
     else:
         form_input = UploadForm()
     context ={
@@ -164,7 +166,7 @@ def UpdateSkripsi(req, pk):
         instance.nim = req.POST.get('nim')
         instance.nama_penulis = req.POST.get('nama_penulis')
         instance.save()
-        messages.success(req, "data Telah ditambahkan")
+        messages.success(req, "Data Telah diupdate")
         return redirect('/administration/skripsi/')
     context = {"data":instance} 
     return render(req, 'skripsi/update.html', context) 
@@ -183,20 +185,28 @@ def DetailSkripsi(req, pk):
 @login_required(login_url='/accounts/')
 def AccountsSettings(request):
     user = Profile.objects.filter(user=request.user).first()
+    user2 = User.objects.filter(email=request.user.email).first()
     form = ProfileForm(instance=user)
+    form2 = ProfileForm2(instance=user2)
     if request.POST:
         form = ProfileForm(request.POST, request.FILES, instance=user)
-        if form.is_valid():
+        form2 = ProfileForm2(request.POST, request.FILES, instance=user2)
+        if form.is_valid() and form2.is_valid():
             form.instance.user = request.user
+            form2.email = form2.cleaned_data['email']
             form.save()
+            form2.save()
             messages.success(request, 'Data telah ditambahkan.')
             return redirect('/administration/profile/')
         else:
             print(form.errors)
+            print(form2.errors)
     else:
         form = ProfileForm(instance=user)
+        form2 = ProfileForm2(instance=user2)
     context ={
         'form_admin':form,
+        'form_admin2':form2,
     }
     return render(request, 'profile/profile.html', context)
 

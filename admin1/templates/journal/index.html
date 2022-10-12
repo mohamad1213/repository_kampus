@@ -25,7 +25,6 @@
                                     <th>Nama Penulis</th>
                                     <th>Nim Mahasiswa</th>
                                     <th>Prodi</th>
-                                    <th>Jenis Penelitian</th>
                                     <th>Judul Jurnal</th>
                                     <th>Tanggal </th>
                                     <th>Actions</th>
@@ -37,15 +36,14 @@
                                     <td>{{u.nama_penulis}}</td>
                                     <td>{{u.nim_siswa}}</td>
                                     <td>{{u.prodi}}</td>
-                                    <td>{{u.jenis_laporan}}</td>
                                     <td>{{u.judul_laporan}}</td>
                                     <td>{{u.created_at}}</td>
                                     <td>
                                         <a type="button" class="btn btn-primary"
-                                            href="/administration/karya_tulis/{{u.pk}}/detail/"><i class="fas fa-eye"></i></a>
+                                            href="/administration/journal/detail/{{u.pk}}/"><i class="fas fa-eye"></i></a>
 
                                         <a type="button" class="btn btn-warning"
-                                            href="/administration/karya_tulis/{{u.pk}}/update/"><i class="fas fa-regular fa-pen text-white"></i></a>
+                                            href="/administration/journal/update/{{u.pk}}/"><i class="fas fa-regular fa-pen text-white"></i></a>
                                         <a type="button" class="btn btn-danger" data-toggle="modal"
                                             data-target="#delete-{{d.id}}">
                                             <i class="fas fa-trash-alt"></i></a>
@@ -72,7 +70,7 @@
                                             <button class="btn" type="button" data-dismiss="modal" aria-label="Close">
                                                 No
                                             </button>
-                                            <a href="/administration/karya_tulis/{{u.pk}}/delete/" type="submit"
+                                            <a href="/administration/journal/delete/{{u.pk}}/" type="submit"
                                                 class="btn btn-danger">Yes</a>
                                         </div>
                                     </div>

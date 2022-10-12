@@ -10,7 +10,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from itertools import chain
 
-from home.forms import ProfileUserForm
+from home.forms import ProfileUserForm,ProfileUserForm2
 def home(request):
     group = request.user.groups.first()
     if group is not None and group.name == 'admin':
@@ -96,7 +96,7 @@ def list_fav(request):
         }
         return render(request, 'bookmark.html', context)
     else:
-        notfound = 'Data not Found'
+        notfound = 'Data Tidak Ditemukan'
     context = {
         'journal':kartul,
         'skripsi':skripsi,
@@ -109,21 +109,29 @@ def list_fav(request):
 @login_required(login_url='/accounts/')
 def AccountsSettings(request):
     user = ProfileUser.objects.filter(user=request.user).first()
-    print(user)
+    user2 = User.objects.filter(email=request.user.email).first()
     form = ProfileUserForm(instance=user)
+    form2 = ProfileUserForm2(instance=user2)
     if request.POST:
         form = ProfileUserForm(request.POST, request.FILES, instance=user)
-        if form.is_valid():
+        form2 = ProfileUserForm2(request.POST, request.FILES, instance=user2)
+        if form.is_valid() and form2.is_valid():
             form.instance.user = request.user
+            form2.email = form2.cleaned_data['email']
             form.save()
+            form2.save()
             messages.success(request, 'Data telah ditambahkan.')
             return redirect('/profile/')
         else:
             print(form.errors)
+            print(form2.errors)
     else:
         form = ProfileUserForm(instance=user)
+        form2 = ProfileUserForm2(instance=user2)
+
     context ={
         'form':form,
+        'form2':form2,
     }
     return render(request, 'profile/index.html', context)
 

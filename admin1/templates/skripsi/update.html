@@ -56,18 +56,8 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
-                        <div class="form-group mb-3 col-md-6">
-                            <label>Abstrak</label>
-                            <input type="file" name="abstrak" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="{{data.abstrak}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
-                        </div>
                         <div class="form-group mb-3 col-md-6">
                             <label>Daftar Isi</label>
                             <input type="file" name="daftarisi" class="file-upload-default">
@@ -79,8 +69,6 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="form-group mb-3 col-md-6">
                             <label>BAB I</label>
                             <input type="file" name="bab1" class="file-upload-default">
@@ -92,6 +80,8 @@
                                 </span>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="form-group mb-3 col-md-6">
                             <label>BAB II</label>
                             <input type="file" name="bab2" class="file-upload-default">
@@ -103,8 +93,6 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="form-group mb-3 col-md-6">
                             <label>BAB III</label>
                             <input type="file" name="bab3" class="file-upload-default">
@@ -116,6 +104,8 @@
                                 </span>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="form-group mb-3 col-md-6">
                             <label>BAB IV</label>
                             <input type="file" name="bab4" class="file-upload-default">
@@ -127,8 +117,6 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="form-group mb-3 col-md-6">
                             <label>BAB V</label>
                             <input type="file" name="bab5" class="file-upload-default">
@@ -140,6 +128,8 @@
                                 </span>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="form-group mb-3 col-md-6">
                             <label>Lampiran</label>
                             <input type="file" name="lampiran" class="file-upload-default">
@@ -163,7 +153,13 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="form-group mb-3 col-md-12">
+                            <label>Abstrak</label>
+                            <textarea name="abstrak" class="form-control" cols="30"
+                                rows="10">{{data.abstrak}}</textarea>
+                        </div>
+                    </div>
                     <br>
                     <div class="col-12 d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>

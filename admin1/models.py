@@ -16,18 +16,10 @@ class Profile(models.Model):
         return str(self.name) if self.name else ''
 
 
-class Category(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
-    code = models.CharField(max_length=1)
-    desc = models.CharField(max_length=10)
-    def __str__(self):
-        return self.code +'-'+ self.desc
-
-
 
 class Upload(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
-    owner = models.ForeignKey(User, on_delete = models.DO_NOTHING,related_name='karyatulis')
+    owner = models.ForeignKey(User, on_delete = models.DO_NOTHING,related_name='karyatulis')    
     PRODI_CHOICE = (
         ('Informatika', 'Informatika'),
         ('Teknik Komputer', 'Teknik Komputer'),
@@ -49,7 +41,6 @@ class Upload(models.Model):
     upload = models.FileField(default='', upload_to='karyatulis/', null=False, blank=True,validators=[validate_file_extension])
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    status = models.CharField(default=0, max_length=2)
     favourite = models.ManyToManyField(User, related_name="fav", blank=True)
 
 class UploadSkripsi(models.Model):
@@ -77,7 +68,6 @@ class UploadSkripsi(models.Model):
     bab5 = models.FileField(default='', upload_to='skripsi/', null=False, blank=True,validators=[validate_file_extension])
     dapus = models.FileField(default='', upload_to='skripsi/', null=False, blank=True,validators=[validate_file_extension])
     created_at = models.DateField(auto_now_add=True)
-    status = models.CharField(default=0, max_length=2)
     updated_at = models.DateField(auto_now=True)
     favourite = models.ManyToManyField(User, related_name="fav2", blank=True)
 

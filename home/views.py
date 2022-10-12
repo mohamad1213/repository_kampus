@@ -1,10 +1,11 @@
+from http.client import HTTPResponse
 from admin1.models import *
 from admin1.forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from itertools import chain
@@ -33,27 +34,20 @@ def detail(request, pk):
     }
     return render(request, 'details.html' ,context)
 
-@login_required(login_url='/accounts/')
-def user_detail(request, id):
-    data = Upload.objects.filter(pk=id)
 
 
 def artists_view(request):
     if 'q' in request.GET:
         query = request.GET['q']
-        multiple_q = Q(judul_laporan__icontains=query) | Q(jenis_laporan__icontains=query) | Q(abstrak__icontains=query) | Q(nama_penulis__icontains=query) | Q(prodi__icontains=query) | Q(tahun_penyelesaian__icontains=query) | Q(nim_siswa__icontains=query)
-        multiple_q2 = Q(judul_laporan__icontains=query) | Q(abstrak__icontains=query) | Q(nama_penulis__icontains=query) | Q(prodi__icontains=query) | Q(tahun_penyelesaian__icontains=query) | Q(nim_siswa__icontains=query)
-        results1 = Upload.objects.filter(multiple_q)
-        results2 = UploadSkripsi.objects.filter(multiple_q2)
-        results = chain(results1, results2)
+        multiple_q = Q(judul_laporan__icontains=query) | Q(abstrak__icontains=query) | Q(nama_penulis__icontains=query) | Q(prodi__icontains=query) | Q(tahun_penyelesaian__icontains=query) | Q(nim_siswa__icontains=query)
+        journal = Upload.objects.filter(multiple_q)
+        skripsi = UploadSkripsi.objects.filter(multiple_q)
     else:
-        results1 = Upload.objects.all()
-        results2 = UploadSkripsi.objects.all()
-        results = chain(results1, results2)
+        journal = Upload.objects.all()
+        skripsi = UploadSkripsi.objects.all()
     context ={
-        'post1':results1,
-        'post2':results2,
-        'results': results
+        'journal':journal,
+        'skripsi':skripsi,
     }
     return render(request, 'page_result.html', context)
 
@@ -62,18 +56,21 @@ def post_favorite(request, pk):
     post1 = get_object_or_404(UploadSkripsi,id=pk)
     if post1.favourite.filter(pk=request.user.id).exists():
         post1.favourite.remove(request.user)
-        messages.error(request,'Data telah dihapus')
-
+        messages.success(request,'Data telah dihapus')
     else:
         post1.favourite.add(request.user)
         messages.success(request,'Data telah ditambahkan')
     return HttpResponseRedirect('/list_fav/')
+
+    
 def post_favorite_kartul(request, pk):
     post2 = get_object_or_404(Upload,id=pk)
     if post2.favourite.filter(pk=request.user.id).exists():
         post2.favourite.remove(request.user)
+        messages.success(request, 'bookmark telah dihapus')
     else:
         post2.favourite.add(request.user)
+        messages.success(request, 'bookmark telah ditambahkan')
     return HttpResponseRedirect('/list_fav/')
 
 @login_required(login_url='/accounts/')
@@ -81,9 +78,29 @@ def list_fav(request):
     user = request.user
     kartul = user.fav.all()
     skripsi = user.fav2.all()
-    fav_post = chain(kartul, skripsi)
+    notfound = 'Data not Found'
+    if kartul :
+        kartul = user.fav.all()
+        skripsi = user.fav2.all()
+        context = {
+        'journal':kartul,
+        'skripsi':skripsi,
+        }
+        return render(request, 'bookmark.html', context)
+    elif skripsi :
+        skripsi = user.fav2.all()
+        kartul = user.fav.all()
+        context = {
+        'journal':kartul,
+        'skripsi':skripsi,
+        }
+        return render(request, 'bookmark.html', context)
+    else:
+        notfound = 'Data not Found'
     context = {
-        'fav_post':fav_post,
+        'journal':kartul,
+        'skripsi':skripsi,
+        'notfound':notfound,
     }
     return render(request, 'bookmark.html', context)
 

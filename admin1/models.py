@@ -16,6 +16,14 @@ class Profile(models.Model):
         return str(self.name) if self.name else ''
 
 
+class Category(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    code = models.CharField(max_length=1)
+    desc = models.CharField(max_length=10)
+    def __str__(self):
+        return self.code +'-'+ self.desc
+
+
 
 class Upload(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
@@ -25,13 +33,14 @@ class Upload(models.Model):
         ('Teknik Komputer', 'Teknik Komputer'),
         ('Teknik Elektro', 'Teknik Elektro'),
     )
-    LAPORAN_CHOICES = (
-        ('Jurnal','Jurnal'),
-        ('Project','Project'),
-        ('Thesis','Thesis'),
-    )
-    jenis_laporan = models.CharField(default='',max_length=50,choices=LAPORAN_CHOICES)
+    # LAPORAN_CHOICES = (
+    #     ('Jurnal','Jurnal'),
+    #     ('Project','Project'),
+    #     ('Thesis','Thesis'),
+    # )
+    # jenis_laporan = models.CharField(default='',max_length=50,choices=LAPORAN_CHOICES)
     prodi = models.CharField(max_length=50, choices=PRODI_CHOICE)
+    # category = models.ForeignKey(Category, on_delete = models.DO_NOTHING)
     judul_laporan = models.CharField(max_length=100)
     tahun_penyelesaian = models.IntegerField()
     abstrak= models.TextField(max_length=500)
@@ -42,8 +51,6 @@ class Upload(models.Model):
     updated_at = models.DateField(auto_now=True)
     status = models.CharField(default=0, max_length=2)
     favourite = models.ManyToManyField(User, related_name="fav", blank=True)
-
-
 
 class UploadSkripsi(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
@@ -57,6 +64,7 @@ class UploadSkripsi(models.Model):
     judul_laporan = models.CharField(max_length=100)
     tahun_penyelesaian = models.IntegerField()
     abstrak= models.TextField()
+    # category = models.ForeignKey(Category, on_delete = models.DO_NOTHING)
     nama_penulis=models.CharField(max_length=50)
     nim_siswa=models.IntegerField()
     lampiran = models.FileField(default='', upload_to='skripsi/', null=False, blank=True,validators=[validate_file_extension])

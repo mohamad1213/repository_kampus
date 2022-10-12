@@ -14,7 +14,7 @@ class CreateUserForm(UserCreationForm):
 		self.fields['username'].widget.attrs.update({ 'class': 'form-control rounded border-secondary','type': 'text','placeholder':'Nama Pengguna..' })
 		self.fields['email'].widget.attrs.update({ 'class': 'form-control rounded border-secondary','type':'email', 'placeholder':'Email..' })
 		self.fields['password1'].widget.attrs.update({ 'class': 'form-control rounded border-secondary', 'type':'password' , 'placeholder':'Password..' })
-		self.fields['password2'].widget.attrs.update({ 'class': 'form-control rounded border-secondary','type':'password' , 'placeholder':'Re-Password..' })
+		self.fields['password2'].widget.attrs.update({ 'class': 'form-control rounded border-secondary','type':'password' , 'placeholder':'Retype password..' })
 
 class PasswordResetForm(UserCreationForm):
 	class Meta:

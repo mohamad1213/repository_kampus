@@ -5,20 +5,22 @@
 <div class="content-wrapper" style="background-color: #dbe7c8;">
     {% if skripsi %}
     {% for b in skripsi %}
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8">
-            <div class="mb-3">
-                <h3 class="text-center" style="color: #5f7667; font-weight: bold;">{{b.judul_laporan}}</h3>
-            </div>
-            <div class="mb-3">
-                <h6 class="text-center text-secondary">{{b.nama_penulis}}, {{b.prodi}},
-                    {{b.tahun_penyelesaian}}
-                </h6>
-            </div>
-            <div class="mb-0">
-                <p class="text-center">
-                    {{b.abstrak}}
-                </p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="mb-3">
+                    <h3 class="text-center" style="color: #5f7667; font-weight: bold;">{{b.judul_laporan}}</h3>
+                </div>
+                <div class="mb-3">
+                    <h6 class="text-center text-secondary">{{b.nama_penulis}}, {{b.prodi}},
+                        {{b.tahun_penyelesaian}}
+                    </h6>
+                </div>
+                <div class="mb-0">
+                    <p class="text-center">
+                        {{b.abstrak}}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -131,35 +133,34 @@
     {% endfor %}
     {% elif kartul %}
     {% for b in kartul %}
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8">
-            <div class="mb-3">
-                <h3 class="text-center" style="color: #5f7667; font-weight: bold;">{{b.judul_laporan}}</h3>
-            </div>
-            <div class="mb-3">
-                <h6 class="text-center text-secondary">{{b.nama_penulis}}, {{b.prodi}},
-                    {{b.tahun_penyelesaian}}
-                </h6>
-            </div>
-            <div class="mb-0">
-                <p class="text-center">
-                    {{b.abstrak}}
-                </p>
-            </div>
-            <div class="mb-3 text-center">
-                <a href="{{b.upload.url}}" download style="color: #5f7667; font-weight: bold;"><i
-                        class="fa-solid fa-file-pdf"></i> Unduh
-                    Files</a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="mb-3">
+                    <h3 class="text-center" style="color: #5f7667; font-weight: bold;">{{b.judul_laporan}}</h3>
+                </div>
+                <div class="mb-3">
+                    <h6 class="text-center text-secondary">{{b.nama_penulis}}, {{b.prodi}},
+                        {{b.tahun_penyelesaian}}
+                    </h6>
+                </div>
+                <div class="mb-0">
+                    <p class="text-center">
+                        {{b.abstrak}}
+                    </p>
+                </div>
+                <div class="mb-3 text-center">
+                    <a href="{{b.upload.url}}" download style="color: #5f7667; font-weight: bold;"><i
+                            class="fa-solid fa-file-pdf"></i> Unduh
+                        Files</a>
+                </div>
             </div>
         </div>
-        <br>
-        <br>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
                     <div class="embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item" src="/media/skripsi/Journal_Hatami_2_USJQE36.pdf"
-                            allowfullscreen></iframe>
+                        <iframe class="embed-responsive-item" src="{{b.upload.url}}" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

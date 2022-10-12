@@ -17,6 +17,9 @@
       </li>
     </ul>
     <ul class="navbar-nav navbar-nav-right">
+      <li class="nav-item">
+        {{request.user.profileuser.name}}
+      </li>
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
           {% if request.user.is_authenticated %}
@@ -31,7 +34,7 @@
             <i class="fa-solid fa-bookmark" style="color: #7D9D9C;"></i>
             Bookmark
           </a>
-          <a class="dropdown-item" href="{% url 'home:list_fav' %}">
+          <a class="dropdown-item" href="{% url 'home:profile' %}">
             <i class="fa-solid fa-user-tie" style="color: #7D9D9C;"></i>
             Edit Profil
           </a>
@@ -55,8 +58,91 @@
     {% include 'frontend/messages.html' %}
     <div class="content-wrapper" style="background-color: #dbe7c8;">
       <div class="row justify-content-center">
-        {% if results %}
-        {% for d in results %}
+        {% for b in journal %}
+        <div class="col-12 col-md-10 col-lg-8 stretch-card grid-margin">
+          <div class="card">
+            <div class="card-body shadow">
+              <ul class="icon-data-list">
+                <li>
+                  <div class="d-flex">
+                    <div> <a href="/results/{{b.pk}}/detail/">
+                        <h5 class=" mb-2" style="color: #5f7667; font-weight: bold;">{{b.judul_laporan}}</h5>
+                      </a>
+                      <span class="text-secondary">{{b.nama_penulis}} ({{b.prodi}}, {{b.tahun_penyelesaian}})</span>
+                      <p class="mb-1">{{b.abstrak}}</p>
+                      {% for u in request.user.groups.all %}
+                      {% if u.name == 'user' %}
+                      <a href="/results/{{b.pk}}/post_favorite_kartul/" class="btn"><i class="fa-solid fa-bookmark"
+                          style="color: #7D9D9C;"></i></a>
+                      {% endif %}
+                      {% endfor %}
+
+                      <button type="button" class="btn" data-toggle="modal" data-target="#journal">
+                        <i class="fa-solid fa-quote-right"></i>
+                      </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="journal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Daftar Pustaka</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="container-fluid">
+                                <div class="row">
+                                  <div class="col-3">
+                                    <b>MLA</b>
+                                  </div>
+                                  <div class="col-9">
+                                    <h6 class="text-black">{{b.nama_penulis}}. "{{b.judul_laporan}}"
+                                      <i>{{b.jenis_laporan}}</i> ({{b.tahun_penyelesaian}})
+                                    </h6 class="text-black">
+                                  </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="col-3">
+                                    <b>APA</b>
+                                  </div>
+                                  <div class="col-9">
+                                    <h6 class="text-black">{{b.nama_penulis}}. ({{b.tahun_penyelesaian}}).
+                                      "{{b.judul_laporan}}", <i>{{b.jenis_laporan}}</i></h6 class="text-black">
+                                  </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="col-3">
+                                    <b>ISO 690</b>
+                                  </div>
+                                  <div class="col-9">
+                                    <h6 class="text-black">{{b.nama_penulis}}. "{{b.judul_laporan}}"
+                                      <i>{{b.jenis_laporan}}, </i>{{b.tahun_penyelesaian}}
+                                    </h6 class="text-black">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% for d in skripsi %}
         <div class="col-12 col-md-10 col-lg-8 stretch-card grid-margin">
           <div class="card">
             <div class="card-body shadow">
@@ -70,15 +156,8 @@
                       <p class="mb-1">{{d.abstrak}}</p>
                       {% for u in request.user.groups.all %}
                       {% if u.name == 'user' %}
-                      {% if post1 %}
-                      {% for b in post1 %}
-                      <a href="/results/{{b.pk}}/post_favorite/" class="btn"><i class="fa-solid fa-bookmark"
-                          style="color: #7D9D9C;"></i></a>
-                      {% endfor %}
-                      {% elif post2 %}
                       <a href="/results/{{d.pk}}/post_favorite/" class="btn"><i class="fa-solid fa-bookmark"
                           style="color: #7D9D9C;"></i></a>
-                      {% endif %}
                       {% endif %}
                       {% endfor %}
 
@@ -147,9 +226,6 @@
           </div>
         </div>
         {% endfor %}
-        {% else %}
-        <p>Data not found.</p>
-        {% endif %}
       </div>
     </div>
     {% include 'frontend/footer.html' %}

@@ -11,6 +11,9 @@
       <span class="icon-menu"></span>
     </button>
     <ul class="navbar-nav navbar-nav-right">
+      <li class="nav-item">
+        {{request.user.profile.name}}
+      </li>
       <li class="nav-item nav-profile dropdown">
         {% if request.user.profile %}
         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">

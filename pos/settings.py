@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9pl1&*x2y2jif3!xk2ad2na2q4q)&v)bf%5_cuyk864t5h0k-g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -80,27 +80,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pos.wsgi.application'
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'd3rhh151h1rjtq',
-#         'USER': 'nanesbsctlprrr',
-#         'PASSWORD': 'decc2fbd95fce66a52b10b07a48e5569964fe42dca395e0007185ea5f8092efd',
-#         'HOST': 'ec2-3-232-16-233.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'repository',
-        'USER': 'postgres',
-        'PASSWORD': 'tatam123',
-        'HOST': 'localhost',
+        'NAME': 'd3rhh151h1rjtq',
+        'USER': 'nanesbsctlprrr',
+        'PASSWORD': 'decc2fbd95fce66a52b10b07a48e5569964fe42dca395e0007185ea5f8092efd',
+        'HOST': 'ec2-3-232-16-233.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'repository',
+#         'USER': 'postgres',
+#         'PASSWORD': 'tatam123',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 # from django.core.servers.basehttp import WSGIServer
 # WSGIServer.handle_error = lambda *args, **kwargs: None

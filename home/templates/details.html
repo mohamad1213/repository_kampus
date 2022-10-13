@@ -14,13 +14,19 @@
                 <div class="mb-3">
                     <h6 class="text-center text-secondary">{{b.nama_penulis}}, {{b.prodi}},
                         {{b.tahun_penyelesaian}}
-                    </h6>
+                        {% for u in request.user.groups.all %}
+                        {% if u.name == 'user' %}
+                        <a href="/results/{{b.pk}}/post_favorite/" class="btn"><i class="fa-solid fa-bookmark"
+                                style="color: #7D9D9C;"></i></a>
+                        {% endif %}
+                        {% endfor %}
                 </div>
-                <div class="mb-0">
-                    <p class="text-center">
-                        {{b.abstrak}}
-                    </p>
-                </div>
+                </h6>
+            </div>
+            <div class="mb-0">
+                <p class="text-center">
+                    {{b.abstrak}}
+                </p>
             </div>
         </div>
     </div>
@@ -102,13 +108,13 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-bab4" role="tabpanel" aria-labelledby="v-pills-bab4-tab">
-                        <a href="{{b.bab4.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
-                                class="fa-solid fa-file-pdf"></i>Unduh BAB IV</a>
+                        <!-- <a href="{{b.bab4.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh BAB IV</a> -->
                         <h5 class="text-center">Hubungi staf</h5>
                     </div>
                     <div class="tab-pane fade" id="v-pills-ba5" role="tabpanel" aria-labelledby="v-pills-ba5-tab">
-                        <a href="{{b.bab5.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
-                                class="fa-solid fa-file-pdf"></i>Unduh BAB V</a>
+                        <!-- <a href="{{b.bab5.url}}" download style="color: #5f7667; font-weight: bold; float: right;"><i
+                                class="fa-solid fa-file-pdf"></i>Unduh BAB V</a> -->
                         <h5 class="text-center">Hubungi Staf</h5>
                     </div>
                     <div class="tab-pane fade" id="v-pills-dapus" role="tabpanel" aria-labelledby="v-pills-dapus-tab">
@@ -142,6 +148,12 @@
                 <div class="mb-3">
                     <h6 class="text-center text-secondary">{{b.nama_penulis}}, {{b.prodi}},
                         {{b.tahun_penyelesaian}}
+                        {% for u in request.user.groups.all %}
+                        {% if u.name == 'user' %}
+                        <a href="/results/{{b.pk}}/post_favorite_kartul/" class="btn"><i class="fa-solid fa-bookmark"
+                                style="color: #7D9D9C;"></i></a>
+                        {% endif %}
+                        {% endfor %}
                     </h6>
                 </div>
                 <div class="mb-0">
@@ -156,12 +168,12 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item" src="{{b.upload.url}}" allowfullscreen></iframe>
-                    </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item" src="{{b.upload.url}}" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

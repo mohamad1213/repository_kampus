@@ -40,8 +40,8 @@ def artists_view(request):
     if 'q' in request.GET:
         query = request.GET['q']
         multiple_q = Q(judul_laporan__icontains=query) | Q(abstrak__icontains=query) | Q(nama_penulis__icontains=query) | Q(prodi__icontains=query) | Q(tahun_penyelesaian__icontains=query) | Q(nim_siswa__icontains=query)
-        journal = Upload.objects.filter(multiple_q)
-        skripsi = UploadSkripsi.objects.filter(multiple_q)
+        journal = Upload.objects.filter(multiple_q).order_by('-created_at')
+        skripsi = UploadSkripsi.objects.filter(multiple_q).order_by('-created_at')
     else:
         journal = Upload.objects.all()
         skripsi = UploadSkripsi.objects.all()

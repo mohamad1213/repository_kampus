@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="{% static 'admin/template/vendors/ti-icons/css/themify-icons.css' %}">
   <link rel="stylesheet" href="{% static 'admin/template/vendors/css/vendor.bundle.base.css' %}">
   <link rel="stylesheet" href="{% static 'admin/template/css/vertical-layout-light/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- endinject -->
 </head>
 
@@ -21,10 +24,14 @@
       <div class="content-wrapper d-flex align-items-center auth px-0" style="background-color: #dbe7c8;">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
+            <a href="/" style="color: #000000; text-align: center;"><i
+                class="fa-sharp fa-solid fa-arrow-left"></i>Kembali</a>
             <div class="auth-form-light rounded text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
                 <div class="row justify-content-center">
-                  <img src="{% static 'admin/inf.png' %}" alt="logo">
+                  <a href="/">
+                    <img src="{% static 'admin/inf.png' %}" alt="logo">
+                  </a>
                 </div>
                 <h4 class="text-center" style="color: #000000">Repository Fakultas Teknologi Informasi</h4>
                 <h5 class="text-center" style="color: #575656;"><b>Universitas Nahdlatul Ulama Yogyakarta</b></h5>
@@ -80,9 +87,9 @@
     <!-- endinject -->
     <script>
       setTimeout(function () {
-          if ($('#msg').length > 0) {
-              $('#msg').remove();
-          }
+        if ($('#msg').length > 0) {
+          $('#msg').remove();
+        }
       }, 2000)
     </script>
 </body>

@@ -88,12 +88,12 @@
                       {% endif %}
                       {% endfor %}
 
-                      <button type="button" class="btn" data-toggle="modal" data-target="#journal">
+                      <button type="button" class="btn" data-toggle="modal" data-target="#journal-{{b.pk}}">
                         <i class="fa-solid fa-quote-right"></i>
                       </button>
 
                       <!-- Modal -->
-                      <div class="modal fade" id="journal" tabindex="-1" role="dialog"
+                      <div class="modal fade" id="journal-{{b.pk}}" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
@@ -144,7 +144,6 @@
                           </div>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </li>
@@ -172,12 +171,12 @@
                       {% endif %}
                       {% endfor %}
 
-                      <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                      <button type="button" class="btn" data-toggle="modal" data-target="#skripsi-{{d.pk}}">
                         <i class="fa-solid fa-quote-right"></i>
                       </button>
 
                       <!-- Modal -->
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                      <div class="modal fade" id="skripsi-{{d.pk}}" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
@@ -228,7 +227,6 @@
                           </div>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </li>

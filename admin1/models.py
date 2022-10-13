@@ -25,14 +25,7 @@ class Upload(models.Model):
         ('Teknik Komputer', 'Teknik Komputer'),
         ('Teknik Elektro', 'Teknik Elektro'),
     )
-    # LAPORAN_CHOICES = (
-    #     ('Jurnal','Jurnal'),
-    #     ('Project','Project'),
-    #     ('Thesis','Thesis'),
-    # )
-    # jenis_laporan = models.CharField(default='',max_length=50,choices=LAPORAN_CHOICES)
     prodi = models.CharField(max_length=50, choices=PRODI_CHOICE)
-    # category = models.ForeignKey(Category, on_delete = models.DO_NOTHING)
     judul_laporan = models.CharField(max_length=100)
     tahun_penyelesaian = models.IntegerField()
     abstrak= models.TextField(max_length=500)
@@ -55,7 +48,6 @@ class UploadSkripsi(models.Model):
     judul_laporan = models.CharField(max_length=100)
     tahun_penyelesaian = models.IntegerField()
     abstrak= models.TextField()
-    # category = models.ForeignKey(Category, on_delete = models.DO_NOTHING)
     nama_penulis=models.CharField(max_length=50)
     nim_siswa=models.IntegerField()
     lampiran = models.FileField(default='', upload_to='skripsi/', null=False, blank=True,validators=[validate_file_extension])

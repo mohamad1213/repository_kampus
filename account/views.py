@@ -1,7 +1,7 @@
 from email import message
 from admin1.models import Profile
 import uuid
-from django.shortcuts import render, redirect 
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout,get_user_model
 from django.contrib import messages
 from django.db.models import Q
@@ -9,6 +9,19 @@ from .forms import *
 from django.contrib.auth.models import Group
 from django.template.loader import render_to_string
 from .models import *
+
+from django.template import RequestContext
+
+
+def handler404(request, *args, **argv):
+    response = render(request, '404.html')
+    response.status_code = 404
+    return response
+
+def handler500(request, *args, **argv):
+    response = render(request, '500.html')
+    response.status_code = 500
+    return response
 
 def registerPage(request):
 	if request.user.is_authenticated:

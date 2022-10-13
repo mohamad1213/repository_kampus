@@ -23,7 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9pl1&*x2y2jif3!xk2ad2na2q4q)&v)bf%5_cuyk864t5h0k-g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 # DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 
@@ -31,7 +33,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-
+handler404 = 'account.views.page_not_found'
 # Application definition
 
 INSTALLED_APPS = [
@@ -149,9 +151,10 @@ USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS =[
-    os.path.join(BASE_DIR, 'static') 
-]
+# STATICFILES_DIRS =[
+#     os.path.join(BASE_DIR, 'static') 
+# ]
+STATIC_ROOT =  os.path.join(BASE_DIR, 'static') 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'
 

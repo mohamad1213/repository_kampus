@@ -26,7 +26,7 @@ class UploadForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(UploadForm, self).__init__(*args, **kwargs)
         self.fields['prodi'].initial = 'Select Prodi ...'
-        self.fields['upload'].widget.attrs.update({ 'class': 'form-control','type':'file', 'accept':'application/pdf','style':'padding:6px 10px ;border: 1px solid #ced4da'})
+        self.fields['upload'].widget.attrs.update({ 'class': 'form-control file-upload-info','type':'file', 'accept':'application/pdf','style':'padding:6px 10px ;border: 1px solid #ced4da','placeholder':'{{data.upload.value}}'})
 class UploadSkripsiForm(ModelForm):
     class Meta:
          model = UploadSkripsi

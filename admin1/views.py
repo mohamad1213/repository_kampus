@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import *
@@ -71,24 +72,18 @@ def CreateJournal(request):
     }
     return render(request, 'journal/create.html', context)
 @login_required(login_url='/accounts/')
-def UpdateJournal(req, pk):
-    instance = Upload.objects.get(id=pk)
-    if req.POST:
-        if len(req.FILES) != 0:
-            if len(instance.upload) > 0:
-                os.remove(instance.upload.path)
-            instance.upload = req.FILES['upload']
-        instance.prodi = req.POST.get('prodi')
-        instance.judul_laporan = req.POST.get('judul_laporan')
-        instance.tahun_penyelesaian = req.POST.get('tahun_penyelesaian')
-        instance.abstrak = req.POST.get('abstrak')
-        instance.nim = req.POST.get('nim')
-        instance.nama_penulis = req.POST.get('nama_penulis')
-        instance.save()
-        messages.success(req, "Data Telah diupdate")
-        return redirect('/administration/journal/')
-    context = {"data":instance}
-    return render(req, 'journal/update.html', context) 
+def UpdateJournal(request, pk):
+    instance =get_object_or_404(Upload,id=pk)
+    form_journal = UploadForm(instance=instance)
+    if request.POST:
+        form_journal = UploadForm(request.POST, request.FILES,instance=instance)
+        if form_journal.is_valid():
+            form_journal.owner = request.user
+            form_journal.save()
+            messages.success(request, "Data Telah diupdate")
+            return redirect('/administration/journal/')
+    context = {"data":form_journal}
+    return render(request, 'journal/update.html', context) 
 
 @login_required(login_url='/accounts/')
 def DeleteJournal(req, pk):
@@ -125,51 +120,18 @@ def CreateSkrispi(request):
     }
     return render(request, 'skripsi/create.html', context)
 @login_required(login_url='/accounts/')
-def UpdateSkripsi(req, pk):
-    instance = UploadSkripsi.objects.get(id=pk)
-    if req.POST:
-        if len(req.FILES) != 0:
-            if len(instance.bab1) > 0:
-                os.remove(instance.bab1.path)
-            instance.bab1 = req.FILES['bab1']
-            if len(instance.bab2) > 0:
-                os.remove(instance.bab2.path)
-            instance.bab2 = req.FILES['bab2']
-            if len(instance.bab3) > 0:
-                os.remove(instance.bab3.path)
-            instance.bab3 = req.FILES['bab3']
-            if len(instance.bab4) > 0:
-                os.remove(instance.bab4.path)
-            instance.bab4 = req.FILES['bab4']
-            if len(instance.bab5) > 0:
-                os.remove(instance.bab5.path)
-            instance.bab5 = req.FILES['bab5']
-            if len(instance.bab5) > 0:
-                os.remove(instance.bab5.path)
-            instance.bab5 = req.FILES['bab5']
-            if len(instance.lampiran) > 0:
-                os.remove(instance.lampiran.path)
-            instance.lampiran = req.FILES['lampiran']
-            if len(instance.dapus) > 0:
-                os.remove(instance.dapus.path)
-            instance.dapus = req.FILES['dapus']
-            if len(instance.daftarisi) > 0:
-                os.remove(instance.daftarisi.path)
-            instance.daftarisi = req.FILES['daftarisi']
-            if len(instance.abstrak) > 0:
-                os.remove(instance.abstrak.path)
-            instance.abstrak = req.FILES['abstrak']
-        instance.prodi = req.POST.get('prodi')
-        instance.judul_laporan = req.POST.get('judul_laporan')
-        instance.tahun_penyelesaian = req.POST.get('tahun_penyelesaian')
-        instance.abstrak = req.POST.get('abstrak')
-        instance.nim = req.POST.get('nim')
-        instance.nama_penulis = req.POST.get('nama_penulis')
-        instance.save()
-        messages.success(req, "Data Telah diupdate")
-        return redirect('/administration/skripsi/')
-    context = {"data":instance} 
-    return render(req, 'skripsi/update.html', context) 
+def UpdateSkripsi(request, pk):
+    instance =get_object_or_404(UploadSkripsi,id=pk)
+    form_skripsi = UploadSkripsiForm(instance=instance)
+    if request.POST:
+        form_skripsi = UploadSkripsiForm(request.POST, request.FILES,instance=instance)
+        if form_skripsi.is_valid():
+            form_skripsi.owner = request.user
+            form_skripsi.save()
+            messages.success(request, "Data Telah diupdate")
+            return redirect('/administration/skripsi/')
+    context = {"data":form_skripsi} 
+    return render(request, 'skripsi/update.html', context) 
     
 @login_required(login_url='/accounts/')
 def DeleteSkrispi(req, pk):

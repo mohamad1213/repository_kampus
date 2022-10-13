@@ -18,42 +18,29 @@
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Nama Penulis</label>
-                            <input class="form-control" type="text" name="nama_penulis" value="{{data.nama_penulis}}" />
+                            {{data.nama_penulis}}
                         </div>
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Judul Skripsi</label>
-                            <input type="text" class="form-control" name="judul_laporan"
-                                value="{{data.judul_laporan}}" />
+                            {{data.judul_laporan}}
                         </div>
                         <div class="mb-3 col-md-6">
                             <label class="form-label">NIM </label>
-                            <input class="form-control" type="text" name="nim_siswa" value="{{data.nim_siswa}}" />
+                            {{data.nim_siswa}}"
                         </div>
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Tahun</label>
-                            <input type="text" class="form-control" name="tahun_penyelesaian"
-                                value="{{data.tahun_penyelesaian}}" />
+                            {{data.tahun_penyelesaian}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label>Prodi</label>
-                            <select id="prodi" class="form-control" name="prodi">
-                                <option value="informatika">Informatika</option>
-                                <option value="Teknik Komputer">Teknik Komputer</option>
-                                <option value="Teknik Elektro">Teknik Elektro</option>
-                            </select>
+                            {{data.prodi}}
                         </div>
                         <div class="form-group mb-3 col-md-6">
                             <label>File Jurnal</label>
-                            <input type="file" name="upload" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" accept="application/pdf"
-                                    disabled placeholder="{{data.upload}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+                            {{data.upload}}
                             <small>File harus berbentuk PDF</small>
                         </div>
                     </div>

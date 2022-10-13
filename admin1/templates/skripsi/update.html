@@ -18,146 +18,76 @@
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Nama Penulis</label>
-                            <input class="form-control" type="text" name="nama_penulis" value="{{data.nama_penulis}}" />
+                            {{data.nama_penulis}}
                         </div>
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Judul Skripsi</label>
-                            <input type="text" class="form-control" name="judul_laporan"
-                                value="{{data.judul_laporan}}" />
+                            {{data.judul_laporan}}
                         </div>
                         <div class="mb-3 col-md-6">
                             <label class="form-label">NIM </label>
-                            <input class="form-control" type="text" name="nim_siswa" value="{{data.nim_siswa}}" />
+                            {{data.nim_siswa}}
                         </div>
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Tahun</label>
-                            <input type="text" class="form-control" name="tahun_penyelesaian"
-                                value="{{data.tahun_penyelesaian}}" />
+                            {{data.tahun_penyelesaian}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label>Prodi</label>
-                            <select id="prodi" class="form-control" name="prodi">
-                                <option value="informatika">Informatika</option>
-                                <option value="Teknik Komputer">Teknik Komputer</option>
-                                <option value="Teknik Elektro">Teknik Elektro</option>
-                            </select>
+                            {{data.prodi}}
                         </div>
                         <div class="form-group mb-3 col-md-6">
                             <label>Cover</label>
-                            <input type="file" name="cover" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="{{data.cover}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+                            {{data.cover}}
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group mb-3 col-md-6">
                             <label>Daftar Isi</label>
-                            <input type="file" name="daftarisi" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="{{data.daftarisi}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+                            {{data.daftarisi}}
                         </div>
                         <div class="form-group mb-3 col-md-6">
                             <label>BAB I</label>
-                            <input type="file" name="bab1" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="{{data.bab1}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+                            {{data.bab1}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group mb-3 col-md-6">
                             <label>BAB II</label>
-                            <input type="file" name="bab2" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="{{data.bab2}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+                            {{data.bab2}}
                         </div>
                         <div class="form-group mb-3 col-md-6">
                             <label>BAB III</label>
-                            <input type="file" name="bab3" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="{{data.bab3}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+                            {{data.bab3}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group mb-3 col-md-6">
                             <label>BAB IV</label>
-                            <input type="file" name="bab4" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="{{data.bab4}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+                            {{data.bab4}}
                         </div>
                         <div class="form-group mb-3 col-md-6">
                             <label>BAB V</label>
-                            <input type="file" name="bab5" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="{{data.bab5}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+                            {{data.bab5}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group mb-3 col-md-6">
                             <label>Lampiran</label>
-                            <input type="file" name="lampiran" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="{{data.lampiran}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+                            {{data.lampiran}}
                         </div>
                         <div class="form-group mb-3 col-md-6">
                             <label>Daftar Pustaka</label>
-                            <input type="file" name="dapus" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="{{data.dapus}}">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+                            {{data.dapus}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group mb-3 col-md-12">
                             <label>Abstrak</label>
-                            <textarea name="abstrak" class="form-control" cols="30"
-                                rows="10">{{data.abstrak}}</textarea>
+                            {{data.abstrak}}
                         </div>
                     </div>
                     <br>

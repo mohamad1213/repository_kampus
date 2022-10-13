@@ -27,8 +27,8 @@ DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 
-# ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
+# ALLOWED_HOSTS = ['*']
 
 
 

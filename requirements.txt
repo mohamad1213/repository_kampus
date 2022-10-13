@@ -51,4 +51,5 @@ uritemplate==4.1.1
 urllib3==1.26.12
 virtualenv==20.14.1
 whitenoise==6.2.0
+gunicorn==19.0.0
 yarl==1.8.1

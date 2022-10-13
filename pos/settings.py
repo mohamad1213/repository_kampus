@@ -27,8 +27,8 @@ DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 
-# ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
+# ALLOWED_HOSTS = ['*']
 
 
 
@@ -79,27 +79,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pos.wsgi.application'
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'd3rhh151h1rjtq',
-#         'USER': 'nanesbsctlprrr',
-#         'PASSWORD': 'decc2fbd95fce66a52b10b07a48e5569964fe42dca395e0007185ea5f8092efd',
-#         'HOST': 'ec2-3-232-16-233.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'repository',
-        'USER': 'postgres',
-        'PASSWORD': 'tatam123',
-        'HOST': 'localhost',
+        'NAME': 'd3rhh151h1rjtq',
+        'USER': 'nanesbsctlprrr',
+        'PASSWORD': 'decc2fbd95fce66a52b10b07a48e5569964fe42dca395e0007185ea5f8092efd',
+        'HOST': 'ec2-3-232-16-233.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'repository',
+#         'USER': 'postgres',
+#         'PASSWORD': 'tatam123',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [

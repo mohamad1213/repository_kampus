@@ -1,1 +1,1 @@
-web: python3 manage.py collectstatic --no-input; gunicorn myapp.wsgi --log-file - --log-level debug
+web: python3 manage.py collectstatic --no-input; gunicorn pos.wsgi --log-file - --log-level debug

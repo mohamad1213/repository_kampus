@@ -51,7 +51,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -102,10 +101,6 @@ DATABASES = {
 #     }
 # }
 
-# from django.core.servers.basehttp import WSGIServer
-# WSGIServer.handle_error = lambda *args, **kwargs: None
-# Password validation
-# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -150,10 +145,9 @@ USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS =[
-#     os.path.join(BASE_DIR, 'static') 
-# ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, 'static') 
+]
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'
 

@@ -27,8 +27,8 @@ DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 
-ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
-# ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['repositoryfti.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap_datepicker_plus',
     'crispy_forms',
+    'crispy_bootstrap4',
     'home',
     'admin1',
     'account'
@@ -51,12 +52,14 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = 'pos.urls'
 
@@ -79,27 +82,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pos.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd3rhh151h1rjtq',
-        'USER': 'nanesbsctlprrr',
-        'PASSWORD': 'decc2fbd95fce66a52b10b07a48e5569964fe42dca395e0007185ea5f8092efd',
-        'HOST': 'ec2-3-232-16-233.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'repository',
-#         'USER': 'postgres',
-#         'PASSWORD': 'tatam123',
-#         'HOST': 'localhost',
+#         'NAME': 'd3rhh151h1rjtq',
+#         'USER': 'nanesbsctlprrr',
+#         'PASSWORD': 'decc2fbd95fce66a52b10b07a48e5569964fe42dca395e0007185ea5f8092efd',
+#         'HOST': 'ec2-3-232-16-233.compute-1.amazonaws.com',
 #         'PORT': '5432',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'repository',
+        # 'USER': 'postgres',
+        # 'PASSWORD': 'tatam123',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432',
+    }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -144,6 +147,7 @@ USE_L10N = True
 
 USE_TZ = True
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 STATICFILES_DIRS =[
     os.path.join(BASE_DIR, 'static') 
